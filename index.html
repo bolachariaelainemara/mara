@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Página Inicial — Meu Projeto</title>
+  <meta name="description" content="Página inicial simples e responsiva gerada pelo ChatGPT." />
+  <!-- Ícone: substitua pela sua imagem -->
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <style>
+    :root{
+      --bg:#0f1724; /* fundo escuro */
+      --card:#0b1220;
+      --accent:#4f46e5;
+      --muted:#94a3b8;
+      --glass: rgba(255,255,255,0.04);
+      --radius:12px;
+      font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      background:linear-gradient(180deg, #071025 0%, #071229 60%);
+      color:#e6eef8;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      line-height:1.4;
+      padding:32px;
+    }
+    .container{ max-width:1100px; margin:0 auto; }
+
+    header{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:16px;margin-bottom:28px;
+    }
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{
+      width:52px;height:52px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#06b6d4);
+      box-shadow:0 6px 18px rgba(79,70,229,0.18);
+      font-weight:700;color:white
+    }
+    nav a{color:var(--muted);text-decoration:none;margin-left:18px}
+    .hero{
+      display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:center;margin-bottom:28px
+    }
+    .card{background:var(--card);padding:22px;border-radius:var(--radius);box-shadow:0 6px 24px rgba(2,6,23,0.6)}
+    h1{margin:0 0 8px;font-size:32px}
+    p.lead{margin:0;color:var(--muted)}
+    .cta{display:inline-block;margin-top:16px;padding:10px 16px;border-radius:10px;background:var(--accent);color:white;font-weight:600;text-decoration:none}
+
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+    .feature{padding:14px;background:var(--glass);border-radius:10px}
+    .muted{color:var(--muted);font-size:14px}
+
+    footer{margin-top:36px;color:var(--muted);font-size:14px;text-align:center}
+
+    /* responsivo */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+      .features{grid-template-columns:repeat(1,1fr)}
+    }
+
+    /* pequeno utilitário */
+    .small{font-size:13px;color:var(--muted)}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    button{padding:10px 12px;border-radius:8px;border:0;background:var(--accent);color:white;font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">MP</div>
+        <div>
+          <div style="font-weight:700">Meu Projeto</div>
+          <div class="small">Uma página inicial limpa e responsiva</div>
+        </div>
+      </div>
+      <nav aria-label="Navegação principal">
+        <a href="#features">Recursos</a>
+        <a href="#contato">Contato</a>
+      </nav>
+    </header>
+
+    <main class="hero">
+      <section class="card">
+        <h1>Bem-vindo ao seu projeto</h1>
+        <p class="lead">Página inicial de estrutura simples, criada para servir de ponto de partida. Use esta base para adicionar seu conteúdo, componentes e estilos.</p>
+        <a class="cta" href="#contato">Comece agora</a>
+
+        <div class="features" id="features" style="margin-top:18px">
+          <div class="feature">
+            <strong>Responsiva</strong>
+            <div class="muted">Funciona bem em celular e desktop.</div>
+          </div>
+          <div class="feature">
+            <strong>Leve</strong>
+            <div class="muted">Sem dependências externas — fácil de personalizar.</div>
+          </div>
+          <div class="feature">
+            <strong>Acessível</strong>
+            <div class="muted">Semântica HTML básica e foco visível.</div>
+          </div>
+        </div>
+      </section>
+
+      <aside class="card">
+        <h3 class="small">Contato rápido</h3>
+        <form id="contato" onsubmit="event.preventDefault();sendForm()">
+          <label class="small">Nome</label>
+          <input id="nome" type="text" placeholder="Seu nome" required />
+          <label class="small" style="margin-top:8px">Mensagem</label>
+          <textarea id="mensagem" rows="5" placeholder="Escreva uma mensagem" required></textarea>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <button type="submit">Enviar</button>
+            <button type="button" onclick="toggleTheme()">Tema</button>
+          </div>
+          <div id="status" class="small" style="margin-top:10px;color:var(--muted)"></div>
+        </form>
+      </aside>
+    </main>
+
+    <section class="card" style="margin-top:6px">
+      <h2 style="margin-top:0">Como usar</h2>
+      <ol class="small muted">
+        <li>Baixe este arquivo como <code>index.html</code>.</li>
+        <li>Abra no navegador ou adapte para seu servidor.</li>
+        <li>Edite cores, texto e estrutura conforme necessário.</li>
+      </ol>
+    </section>
+
+    <footer>
+      © <span id="ano"></span> — Criado com ❤️ • <span class="small">Personalize à vontade</span>
+    </footer>
+  </div>
+
+  <script>
+    // coloca o ano automaticamente
+    document.getElementById('ano').textContent = new Date().getFullYear();
+
+    function sendForm(){
+      const nome = document.getElementById('nome').value.trim();
+      const mensagem = document.getElementById('mensagem').value.trim();
+      const status = document.getElementById('status');
+      if(!nome || !mensagem){ status.textContent = 'Preencha todos os campos.'; return; }
+      // Aqui você pode adicionar envio via fetch() para seu backend
+      status.textContent = 'Mensagem enviada (simulada). Obrigado, ' + nome + '!';
+      setTimeout(()=>{ status.textContent = ''; document.getElementById('contato').reset(); }, 2500);
+    }
+
+    function toggleTheme(){
+      const root = document.documentElement;
+      if(root.style.getPropertyValue('--bg') === ''){
+        // fallback
+        document.body.style.filter = 'invert(0)';
+        return;
+      }
+      // simples inversão de cores para demo
+      const isInverted = document.body.style.filter === 'invert(1)';
+      document.body.style.filter = isInverted ? 'invert(0)' : 'invert(1)';
+    }
+  </script>
+</body>
+</html>
