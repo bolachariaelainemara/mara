@@ -302,7 +302,7 @@
         cursor: pointer;
       }
       
-      /* Modal para galeria de fotos */
+      /* Modal para galeria de fotos - SEM DEFORMAR */
       .modal {
         display: none;
         position: fixed;
@@ -315,18 +315,27 @@
         animation: fadeIn 0.3s ease;
       }
       
-      .modal-content {
+      .modal-content-container {
         position: relative;
         margin: auto;
-        display: block;
-        width: 90%;
-        max-width: 800px;
-        max-height: 80vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 95%;
+        height: 85vh;
         top: 50%;
         transform: translateY(-50%);
+        animation: zoomIn 0.3s ease;
+      }
+      
+      .modal-content {
+        max-width: 90%;
+        max-height: 90%;
+        width: auto;
+        height: auto;
         border-radius: 10px;
         box-shadow: 0 0 30px rgba(255,255,255,0.2);
-        animation: zoomIn 0.3s ease;
+        object-fit: contain;
       }
       
       .modal-caption {
@@ -381,6 +390,7 @@
         cursor: pointer;
         border-radius: 50%;
         transition: all 0.3s ease;
+        z-index: 2002;
       }
       
       .modal-nav:hover {
@@ -403,17 +413,20 @@
         gap: 10px;
         margin-top: 20px;
         padding: 0 20px;
+        flex-wrap: wrap;
       }
       
       .thumbnail {
         width: 60px;
         height: 60px;
-        object-fit: cover;
+        object-fit: contain;
         border-radius: 5px;
         cursor: pointer;
         opacity: 0.6;
         transition: all 0.3s ease;
         border: 2px solid transparent;
+        background: rgba(255,255,255,0.1);
+        padding: 2px;
       }
       
       .thumbnail:hover, .thumbnail.active {
@@ -507,8 +520,14 @@
           height: 200px;
         }
         
+        .modal-content-container {
+          width: 98%;
+          height: 80vh;
+        }
+        
         .modal-content {
-          width: 95%;
+          max-width: 95%;
+          max-height: 95%;
         }
         
         .modal-nav {
@@ -552,7 +571,9 @@
       <span class="close">&times;</span>
       <button class="modal-nav modal-prev">❮</button>
       <button class="modal-nav modal-next">❯</button>
-      <img class="modal-content" id="expandedImg">
+      <div class="modal-content-container">
+        <img class="modal-content" id="expandedImg">
+      </div>
       <div id="imageCaption" class="modal-caption"></div>
       <div class="gallery-thumbnails" id="galleryThumbnails"></div>
     </div>
@@ -851,7 +872,7 @@
         document.head.appendChild(style);
       }
       
-      // Sistema de galeria para múltiplas fotos
+      // Sistema de galeria para múltiplas fotos - SEM DEFORMAR
       let currentGalleryIndex = 0;
       let currentGalleryImages = [];
       let currentGalleryName = '';
@@ -903,12 +924,18 @@
         const url = currentGalleryImages[index];
         const fullUrl = url.startsWith('http') ? url : 'https://bolachariaelainemara.github.io/mara/IMG_NATAL/' + url;
         
-        modalImg.src = fullUrl;
-        modalImg.onerror = () => {
+        // Cria uma nova imagem para pré-carregar
+        const img = new Image();
+        img.onload = function() {
+          modalImg.src = fullUrl;
+          modalImg.alt = `${currentGalleryName} - Foto ${index + 1}`;
+          captionText.innerHTML = `${currentGalleryName} - Foto ${index + 1} de ${currentGalleryImages.length}`;
+        };
+        img.onerror = function() {
           modalImg.alt = 'Imagem não disponível';
           captionText.innerHTML = `${currentGalleryName} - Foto ${index + 1} (Não disponível)`;
         };
-        captionText.innerHTML = `${currentGalleryName} - Foto ${index + 1} de ${currentGalleryImages.length}`;
+        img.src = fullUrl;
         
         updateThumbnails();
       }
