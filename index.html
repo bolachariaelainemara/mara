@@ -26,7 +26,7 @@
       }
       
       .container {
-        max-width: 800px;
+        max-width: 900px;
         margin: 0 auto;
         background: white;
         padding: 0;
@@ -161,11 +161,9 @@
       }
       
       .item {
-        display: flex;
-        align-items: center;
         background: white;
-        margin-bottom: 15px;
-        padding: 15px;
+        margin-bottom: 25px;
+        padding: 20px;
         border-radius: 12px;
         box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         border: 2px solid transparent;
@@ -194,16 +192,27 @@
         opacity: 1;
       }
       
-      .item-image-container {
+      .item-content {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+      }
+      
+      .item-images {
+        display: flex;
+        gap: 15px;
         flex-shrink: 0;
-        margin-right: 20px;
+      }
+      
+      .item-image-container {
         position: relative;
+        text-align: center;
       }
       
       .item-image {
         border-radius: 10px;
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
         object-fit: cover;
         border: 3px solid #2d8c3d;
         box-shadow: 0 3px 8px rgba(0,0,0,0.2);
@@ -216,15 +225,23 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       }
       
+      .image-label {
+        font-size: 11px;
+        color: #666;
+        margin-top: 5px;
+        font-style: italic;
+      }
+      
       .item-details {
         flex-grow: 1;
+        min-width: 0;
       }
       
       .item-top {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 8px;
+        margin-bottom: 12px;
       }
       
       .item-name-info {
@@ -244,38 +261,43 @@
       .item-name {
         font-weight: bold;
         color: #2d8c3d;
-        font-size: 16px;
+        font-size: 18px;
+        margin-bottom: 5px;
       }
       
       .item-price {
         background: linear-gradient(135deg, #c41e3a, #e74c3c);
         color: white;
-        padding: 8px 15px;
+        padding: 10px 20px;
         border-radius: 25px;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 18px;
         box-shadow: 0 3px 8px rgba(199, 30, 58, 0.3);
-        min-width: 80px;
+        min-width: 90px;
         text-align: center;
+        flex-shrink: 0;
       }
       
       .item-weight {
-        font-size: 14px;
+        font-size: 15px;
         color: #666;
         font-style: italic;
-        margin-top: 5px;
+        margin-bottom: 8px;
       }
       
       .item-descricao {
-        font-size: 13px;
+        font-size: 14px;
         color: #888;
-        margin-top: 5px;
-        line-height: 1.4;
+        line-height: 1.5;
+        background: #f9f9f9;
+        padding: 10px;
+        border-radius: 8px;
+        border-left: 3px solid #2d8c3d;
       }
       
       .no-image {
-        width: 120px;
-        height: 120px;
+        width: 140px;
+        height: 140px;
         background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
         border: 3px solid #2d8c3d;
         border-radius: 10px;
@@ -442,7 +464,7 @@
         50% { transform: translateY(-10px); }
       }
       
-      @media (max-width: 600px) {
+      @media (max-width: 768px) {
         .container {
           margin: 10px;
           border-radius: 10px;
@@ -453,19 +475,23 @@
           gap: 15px;
         }
         
-        .item {
+        .item-content {
           flex-direction: column;
-          text-align: center;
         }
         
-        .item-image-container {
-          margin-right: 0;
-          margin-bottom: 15px;
+        .item-images {
+          justify-content: center;
+          flex-wrap: wrap;
         }
         
         .item-image, .no-image {
-          width: 140px;
-          height: 140px;
+          width: 120px;
+          height: 120px;
+        }
+        
+        .item-price {
+          align-self: center;
+          margin-top: 10px;
         }
         
         .modal-content {
@@ -491,6 +517,18 @@
           font-size: 30px;
           width: 40px;
           height: 40px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .item-images {
+          flex-direction: column;
+          align-items: center;
+        }
+        
+        .item-image, .no-image {
+          width: 150px;
+          height: 150px;
         }
       }
     </style>
@@ -522,7 +560,7 @@
               <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/pix_qrcode.png" alt="QR Code para pedidos" onerror="this.style.display='none'; this.parentNode.innerHTML='📱';">
             </div>
             <div class="horario-text">
-              🎁 COLEÇÃO DE NATAL 
+              🎁 COLEÇÃO DE NATAL
             </div>
           </div>
         </div>
@@ -534,82 +572,139 @@
             <h2 class="category-title">BOLACHA DOCE</h2>
             
               <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/NATAL.JPG" 
-                           class="item-image" 
-                           alt="Broa de Milho" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Broa de Milho')">
-                    
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.01</span>
-                      <span class="item-name">Broa de Milho</span>
-                      <div class="item-weight">caixa surpresa com biscoitos selecionados prontas para entrega </div>
+                <div class="item-content">
+                  <div class="item-images">
+                    <!-- Primeira Foto -->
+                    <div class="item-image-container">
                       
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/NATAL.JPG" 
+                               class="item-image" 
+                               alt="Broa de Milho" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Foto 1<br>Não Disponível</div>';"
+                               onclick="openModal(this, 'Broa de Milho - Foto 1')">
+                        
+                      
+                      <div class="image-label">Foto 1</div>
                     </div>
-                    <div class="item-price">R$ 12,00</div>
+                    
+                    <!-- Segunda Foto -->
+                    <div class="item-image-container">
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/Marcador-de-livro3uni.jpg" 
+                               class="item-image" 
+                               alt="Broa de Milho" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Foto 2<br>Não Disponível</div>';"
+                               onclick="openModal(this, 'Broa de Milho - Foto 2')">
+                        
+                      
+                      <div class="image-label">Foto 2</div>
+                    </div>
+                  </div>
+                  
+                  <div class="item-details">
+                    <div class="item-top">
+                      <div class="item-name-info">
+                        <span class="item-number">01.01.01</span>
+                        <span class="item-name">Broa de Milho</span>
+                        <div class="item-weight">caixa surpresa com biscoitos selecionados prontas para entrega </div>
+                      </div>
+                      <div class="item-price">R$ 12,00</div>
+                    </div>
+                    <div class="item-descricao">ffff</div>
                   </div>
                 </div>
               </div>
             
               <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/Marcador-de-livro3uni.jpg" 
-                           class="item-image" 
-                           alt="Marcador de livro" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Marcador de livro')">
-                    
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.02</span>
-                      <span class="item-name">Marcador de livro</span>
-                      <div class="item-weight">3 biscoitos sabor gengibre/mel e canela</div>
+                <div class="item-content">
+                  <div class="item-images">
+                    <!-- Primeira Foto -->
+                    <div class="item-image-container">
                       
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/Marcador-de-livro3uni.jpg" 
+                               class="item-image" 
+                               alt="Marcador de livro" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Foto 1<br>Não Disponível</div>';"
+                               onclick="openModal(this, 'Marcador de livro - Foto 1')">
+                        
+                      
+                      <div class="image-label">Foto 1</div>
                     </div>
-                    <div class="item-price">R$ 5,50</div>
+                    
+                    <!-- Segunda Foto -->
+                    <div class="item-image-container">
+                      
+                        <div class="no-image">
+                          📷<br>
+                          Foto 2<br>
+                          Não Disponível
+                        </div>
+                      
+                      <div class="image-label">Foto 2</div>
+                    </div>
+                  </div>
+                  
+                  <div class="item-details">
+                    <div class="item-top">
+                      <div class="item-name-info">
+                        <span class="item-number">01.01.02</span>
+                        <span class="item-name">Marcador de livro</span>
+                        <div class="item-weight">3 biscoitos sabor gengibre/mel e canela</div>
+                      </div>
+                      <div class="item-price">R$ 5,50</div>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
             
               <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/natal2.jpg" 
-                           class="item-image" 
-                           alt="TESTANDO" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'TESTANDO')">
-                    
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01</span>
-                      <span class="item-name">TESTANDO</span>
-                      <div class="item-weight">UMA MAO</div>
+                <div class="item-content">
+                  <div class="item-images">
+                    <!-- Primeira Foto -->
+                    <div class="item-image-container">
                       
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/natal2.jpg" 
+                               class="item-image" 
+                               alt="TESTANDO" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Foto 1<br>Não Disponível</div>';"
+                               onclick="openModal(this, 'TESTANDO - Foto 1')">
+                        
+                      
+                      <div class="image-label">Foto 1</div>
                     </div>
-                    <div class="item-price">R$ 0,00</div>
+                    
+                    <!-- Segunda Foto -->
+                    <div class="item-image-container">
+                      
+                        <div class="no-image">
+                          📷<br>
+                          Foto 2<br>
+                          Não Disponível
+                        </div>
+                      
+                      <div class="image-label">Foto 2</div>
+                    </div>
+                  </div>
+                  
+                  <div class="item-details">
+                    <div class="item-top">
+                      <div class="item-name-info">
+                        <span class="item-number">01</span>
+                        <span class="item-name">TESTANDO</span>
+                        <div class="item-weight">UMA MAO</div>
+                      </div>
+                      <div class="item-price">R$ 0,00</div>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -620,55 +715,136 @@
             <h2 class="category-title">ESPECIAIS DE NATAL</h2>
             
               <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/natal2.jpg" 
-                           class="item-image" 
-                           alt="ESTE É UMA VERIFICAÇÃO" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'ESTE É UMA VERIFICAÇÃO')">
-                    
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">02</span>
-                      <span class="item-name">ESTE É UMA VERIFICAÇÃO</span>
-                      <div class="item-weight">VER QUAL EP</div>
+                <div class="item-content">
+                  <div class="item-images">
+                    <!-- Primeira Foto -->
+                    <div class="item-image-container">
                       
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/natal2.jpg" 
+                               class="item-image" 
+                               alt="ESTE É UMA VERIFICAÇÃO" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Foto 1<br>Não Disponível</div>';"
+                               onclick="openModal(this, 'ESTE É UMA VERIFICAÇÃO - Foto 1')">
+                        
+                      
+                      <div class="image-label">Foto 1</div>
                     </div>
-                    <div class="item-price">R$ 5,80</div>
+                    
+                    <!-- Segunda Foto -->
+                    <div class="item-image-container">
+                      
+                        <div class="no-image">
+                          📷<br>
+                          Foto 2<br>
+                          Não Disponível
+                        </div>
+                      
+                      <div class="image-label">Foto 2</div>
+                    </div>
+                  </div>
+                  
+                  <div class="item-details">
+                    <div class="item-top">
+                      <div class="item-name-info">
+                        <span class="item-number">02</span>
+                        <span class="item-name">ESTE É UMA VERIFICAÇÃO</span>
+                        <div class="item-weight">VER QUAL EP</div>
+                      </div>
+                      <div class="item-price">R$ 5,80</div>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
             
               <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/natal2.jpg" 
-                           class="item-image" 
-                           alt="GEEEDGDFGD" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'GEEEDGDFGD')">
-                    
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">03</span>
-                      <span class="item-name">GEEEDGDFGD</span>
-                      <div class="item-weight">GDGDGFDGF</div>
+                <div class="item-content">
+                  <div class="item-images">
+                    <!-- Primeira Foto -->
+                    <div class="item-image-container">
                       
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/natal2.jpg" 
+                               class="item-image" 
+                               alt="GEEEDGDFGD" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Foto 1<br>Não Disponível</div>';"
+                               onclick="openModal(this, 'GEEEDGDFGD - Foto 1')">
+                        
+                      
+                      <div class="image-label">Foto 1</div>
                     </div>
-                    <div class="item-price">R$ 5,80</div>
+                    
+                    <!-- Segunda Foto -->
+                    <div class="item-image-container">
+                      
+                        <div class="no-image">
+                          📷<br>
+                          Foto 2<br>
+                          Não Disponível
+                        </div>
+                      
+                      <div class="image-label">Foto 2</div>
+                    </div>
+                  </div>
+                  
+                  <div class="item-details">
+                    <div class="item-top">
+                      <div class="item-name-info">
+                        <span class="item-number">03</span>
+                        <span class="item-name">GEEEDGDFGD</span>
+                        <div class="item-weight">GDGDGFDGF</div>
+                      </div>
+                      <div class="item-price">R$ 5,80</div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="item-content">
+                  <div class="item-images">
+                    <!-- Primeira Foto -->
+                    <div class="item-image-container">
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/NATAL.JPG" 
+                               class="item-image" 
+                               alt="GEEEDGDFGD" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Foto 1<br>Não Disponível</div>';"
+                               onclick="openModal(this, 'GEEEDGDFGD - Foto 1')">
+                        
+                      
+                      <div class="image-label">Foto 1</div>
+                    </div>
+                    
+                    <!-- Segunda Foto -->
+                    <div class="item-image-container">
+                      
+                        <div class="no-image">
+                          📷<br>
+                          Foto 2<br>
+                          Não Disponível
+                        </div>
+                      
+                      <div class="image-label">Foto 2</div>
+                    </div>
+                  </div>
+                  
+                  <div class="item-details">
+                    <div class="item-top">
+                      <div class="item-name-info">
+                        <span class="item-number">04</span>
+                        <span class="item-name">GEEEDGDFGD</span>
+                        <div class="item-weight">GDGDGFDGF</div>
+                      </div>
+                      <div class="item-price">R$ 5,80</div>
+                    </div>
+                    
                   </div>
                 </div>
               </div>
@@ -687,7 +863,7 @@
           </div>
           <p style="margin: 0; font-weight: bold;">🎅 Feliz Natal e Próspero Ano Novo! 🎄</p>
           <p style="margin: 10px 0 0 0; font-size: 12px; opacity: 0.8;">
-            Atualizado em 27/10/2025 • Que suas festas sejam iluminadas! ✨
+            Atualizado em 29/10/2025 • Que suas festas sejam iluminadas! ✨
           </p>
         </div>
       </footer>
