@@ -148,6 +148,10 @@
         object-fit: cover;
         border: 3px solid #e67e22;
         cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      .item-image:hover {
+        transform: scale(1.05);
       }
       .media-buttons {
         display: flex;
@@ -158,14 +162,16 @@
       .media-btn {
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 5px;
-        padding: 6px 12px;
+        padding: 8px 12px;
         background: #f8f8f8;
         border: 1px solid #ddd;
         border-radius: 15px;
         font-size: 12px;
         cursor: pointer;
         transition: all 0.3s ease;
+        font-weight: bold;
       }
       .media-btn:hover {
         background: #e67e22;
@@ -262,6 +268,8 @@
         max-height: 90vh;
         top: 50%;
         transform: translateY(-50%);
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0,0,0,0.5);
       }
       
       .modal-caption {
@@ -271,8 +279,9 @@
         max-width: 700px;
         text-align: center;
         color: #ccc;
-        padding: 10px 0;
+        padding: 15px 0;
         font-size: 18px;
+        font-weight: bold;
       }
       
       .close {
@@ -283,6 +292,7 @@
         font-size: 40px;
         font-weight: bold;
         cursor: pointer;
+        z-index: 2001;
       }
       
       .close:hover {
@@ -294,25 +304,28 @@
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: rgba(0,0,0,0.5);
+        background: rgba(0,0,0,0.7);
         color: white;
         border: none;
-        padding: 15px 20px;
+        padding: 20px 25px;
         cursor: pointer;
-        font-size: 24px;
-        border-radius: 5px;
+        font-size: 28px;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+        z-index: 2001;
       }
       
       .prev {
-        left: 20px;
+        left: 30px;
       }
       
       .next {
-        right: 20px;
+        right: 30px;
       }
       
       .gallery-nav:hover {
-        background: rgba(0,0,0,0.8);
+        background: rgba(230, 126, 34, 0.9);
+        transform: translateY(-50%) scale(1.1);
       }
 
       /* Modal para vídeo */
@@ -336,6 +349,7 @@
         max-height: 90vh;
         top: 50%;
         transform: translateY(-50%);
+        border-radius: 10px;
       }
       
       .video-modal-caption {
@@ -345,7 +359,8 @@
         max-width: 800px;
         text-align: center;
         color: #ccc;
-        padding: 10px 0;
+        padding: 15px 0;
+        font-size: 18px;
       }
       
       @media (max-width: 600px) {
@@ -378,6 +393,7 @@
         .media-buttons {
           flex-direction: row;
           justify-content: center;
+          flex-wrap: wrap;
         }
         
         .item-top {
@@ -391,16 +407,20 @@
         }
 
         .gallery-nav {
-          padding: 10px 15px;
-          font-size: 18px;
+          padding: 15px 20px;
+          font-size: 20px;
         }
         
         .prev {
-          left: 10px;
+          left: 15px;
         }
         
         .next {
-          right: 10px;
+          right: 15px;
+        }
+
+        .modal-content {
+          width: 95%;
         }
       }
     </style>
@@ -409,8 +429,8 @@
     <!-- Modal para galeria de imagens -->
     <div id="galleryModal" class="modal">
       <span class="close">&times;</span>
-      <button class="gallery-nav prev" onclick="changeImage(-1)">❮</button>
-      <button class="gallery-nav next" onclick="changeImage(1)">❯</button>
+      <button class="gallery-nav prev">❮</button>
+      <button class="gallery-nav next">❯</button>
       <img class="modal-content" id="galleryImage">
       <div id="galleryCaption" class="modal-caption"></div>
     </div>
@@ -461,14 +481,12 @@
               <div class="item">
                 <div class="item-image-container">
                   
-                    
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/broa.jpg" 
-                           class="item-image" 
-                           alt="Broa de Milho" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                           onclick="openGallery('Broa de Milho', ['https://bolachariaelainemara.github.io/mara/IMG/broa.jpg'])">
-                    
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/broa.jpg" 
+                         class="item-image" 
+                         alt="Broa de Milho" 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
+                         onclick="openGallery('Broa de Milho', ["https://bolachariaelainemara.github.io/mara/IMG/broa.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -489,18 +507,16 @@
                   </div>
                 </div>
               </div>
-            
+              
               <div class="item">
                 <div class="item-image-container">
                   
-                    
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/beliscao.jpg" 
-                           class="item-image" 
-                           alt="Beliscão de Goiabada" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                           onclick="openGallery('Beliscão de Goiabada', ['https://bolachariaelainemara.github.io/mara/IMG/beliscao.jpg'])">
-                    
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/beliscao.jpg" 
+                         class="item-image" 
+                         alt="Beliscão de Goiabada" 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
+                         onclick="openGallery('Beliscão de Goiabada', ["https://bolachariaelainemara.github.io/mara/IMG/beliscao.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -521,18 +537,16 @@
                   </div>
                 </div>
               </div>
-            
+              
               <div class="item">
                 <div class="item-image-container">
                   
-                    
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/bolachadocedeleite.jpg" 
-                           class="item-image" 
-                           alt="Bolacha Recheada de Doce de Leite" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                           onclick="openGallery('Bolacha Recheada de Doce de Leite', ['https://bolachariaelainemara.github.io/mara/IMG/bolachadocedeleite.jpg'])">
-                    
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/bolachadocedeleite.jpg" 
+                         class="item-image" 
+                         alt="Bolacha Recheada de Doce de Leite" 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
+                         onclick="openGallery('Bolacha Recheada de Doce de Leite', ["https://bolachariaelainemara.github.io/mara/IMG/bolachadocedeleite.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -553,18 +567,16 @@
                   </div>
                 </div>
               </div>
-            
+              
               <div class="item">
                 <div class="item-image-container">
                   
-                    
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/broa_natacoco.jpg" 
-                           class="item-image" 
-                           alt="Bolacha de Nata e Coco" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                           onclick="openGallery('Bolacha de Nata e Coco', ['https://bolachariaelainemara.github.io/mara/IMG/broa_natacoco.jpg'])">
-                    
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/broa_natacoco.jpg" 
+                         class="item-image" 
+                         alt="Bolacha de Nata e Coco" 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
+                         onclick="openGallery('Bolacha de Nata e Coco', ["https://bolachariaelainemara.github.io/mara/IMG/broa_natacoco.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -585,18 +597,16 @@
                   </div>
                 </div>
               </div>
-            
+              
               <div class="item">
                 <div class="item-image-container">
                   
-                    
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/castanha de caju.jpg" 
-                           class="item-image" 
-                           alt="Bolacha de Castanha de Caju com Canela" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                           onclick="openGallery('Bolacha de Castanha de Caju com Canela', ['https://bolachariaelainemara.github.io/mara/IMG/castanha de caju.jpg'])">
-                    
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/castanha de caju.jpg" 
+                         class="item-image" 
+                         alt="Bolacha de Castanha de Caju com Canela" 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
+                         onclick="openGallery('Bolacha de Castanha de Caju com Canela', ["https://bolachariaelainemara.github.io/mara/IMG/castanha de caju.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -617,7 +627,7 @@
                   </div>
                 </div>
               </div>
-            
+              
               <div class="item">
                 <div class="item-image-container">
                   
@@ -646,18 +656,16 @@
                   </div>
                 </div>
               </div>
-            
+              
               <div class="item">
                 <div class="item-image-container">
                   
-                    
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/craquelado_cafe.jpg" 
-                           class="item-image" 
-                           alt="Bolacha Craquelada de café" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                           onclick="openGallery('Bolacha Craquelada de café', ['https://bolachariaelainemara.github.io/mara/IMG/craquelado_cafe.jpg'])">
-                    
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/craquelado_cafe.jpg" 
+                         class="item-image" 
+                         alt="Bolacha Craquelada de café" 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
+                         onclick="openGallery('Bolacha Craquelada de café', ["https://bolachariaelainemara.github.io/mara/IMG/craquelado_cafe.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -678,18 +686,16 @@
                   </div>
                 </div>
               </div>
-            
+              
               <div class="item">
                 <div class="item-image-container">
                   
-                    
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/cookie_chocolate.jpg" 
-                           class="item-image" 
-                           alt="Cookie de Chocolate " 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                           onclick="openGallery('Cookie de Chocolate ', ['https://bolachariaelainemara.github.io/mara/IMG/cookie_chocolate.jpg'])">
-                    
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/cookie_chocolate.jpg" 
+                         class="item-image" 
+                         alt="Cookie de Chocolate " 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
+                         onclick="openGallery('Cookie de Chocolate ', ["https://bolachariaelainemara.github.io/mara/IMG/cookie_chocolate.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -710,7 +716,7 @@
                   </div>
                 </div>
               </div>
-            
+              
           </section>
         
           <section class="category">
@@ -719,19 +725,17 @@
               <div class="item">
                 <div class="item-image-container">
                   
-                    
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg" 
-                           class="item-image" 
-                           alt="Cracker salgadinho de parmesão e orégano" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                           onclick="openGallery('Cracker salgadinho de parmesão e orégano', ['https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg','https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg'])">
-                    
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg" 
+                         class="item-image" 
+                         alt="Cracker salgadinho de parmesão e orégano" 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
+                         onclick="openGallery('Cracker salgadinho de parmesão e orégano', ["https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg","https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg"])">
                   
                   
                   <div class="media-buttons">
                     
-                      <button class="media-btn" onclick="openGallery('Cracker salgadinho de parmesão e orégano', ['https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg','https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg'])">
+                      <button class="media-btn" onclick="openGallery('Cracker salgadinho de parmesão e orégano', ["https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg","https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg"])">
                         📸 Ver mais fotos (2)
                       </button>
                     
@@ -751,23 +755,21 @@
                   </div>
                 </div>
               </div>
-            
+              
               <div class="item">
                 <div class="item-image-container">
                   
-                    
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg" 
-                           class="item-image" 
-                           alt="Cracker salgadinho de parmesão e orégano" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                           onclick="openGallery('Cracker salgadinho de parmesão e orégano', ['https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg','https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg'])">
-                    
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg" 
+                         class="item-image" 
+                         alt="Cracker salgadinho de parmesão e orégano" 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
+                         onclick="openGallery('Cracker salgadinho de parmesão e orégano', ["https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg","https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg"])">
                   
                   
                   <div class="media-buttons">
                     
-                      <button class="media-btn" onclick="openGallery('Cracker salgadinho de parmesão e orégano', ['https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg','https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg'])">
+                      <button class="media-btn" onclick="openGallery('Cracker salgadinho de parmesão e orégano', ["https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg","https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg"])">
                         📸 Ver mais fotos (2)
                       </button>
                     
@@ -787,7 +789,7 @@
                   </div>
                 </div>
               </div>
-            
+              
           </section>
         
           <section class="category">
@@ -796,14 +798,12 @@
               <div class="item">
                 <div class="item-image-container">
                   
-                    
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/chipa.jpg" 
-                           class="item-image" 
-                           alt="Chipa Paraguaia (congelada)" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                           onclick="openGallery('Chipa Paraguaia (congelada)', ['https://bolachariaelainemara.github.io/mara/IMG/chipa.jpg'])">
-                    
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/chipa.jpg" 
+                         class="item-image" 
+                         alt="Chipa Paraguaia (congelada)" 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
+                         onclick="openGallery('Chipa Paraguaia (congelada)', ["https://bolachariaelainemara.github.io/mara/IMG/chipa.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -824,18 +824,16 @@
                   </div>
                 </div>
               </div>
-            
+              
               <div class="item">
                 <div class="item-image-container">
                   
-                    
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/sopa75.jpg" 
-                           class="item-image" 
-                           alt="Sopa Paraguaia " 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                           onclick="openGallery('Sopa Paraguaia ', ['https://bolachariaelainemara.github.io/mara/IMG/sopa75.jpg'])">
-                    
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/sopa75.jpg" 
+                         class="item-image" 
+                         alt="Sopa Paraguaia " 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
+                         onclick="openGallery('Sopa Paraguaia ', ["https://bolachariaelainemara.github.io/mara/IMG/sopa75.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -856,18 +854,16 @@
                   </div>
                 </div>
               </div>
-            
+              
               <div class="item">
                 <div class="item-image-container">
                   
-                    
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/sopa100.jpg" 
-                           class="item-image" 
-                           alt="Sopa Paraguaia " 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                           onclick="openGallery('Sopa Paraguaia ', ['https://bolachariaelainemara.github.io/mara/IMG/sopa100.jpg'])">
-                    
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/sopa100.jpg" 
+                         class="item-image" 
+                         alt="Sopa Paraguaia " 
+                         loading="lazy"
+                         onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
+                         onclick="openGallery('Sopa Paraguaia ', ["https://bolachariaelainemara.github.io/mara/IMG/sopa100.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -888,7 +884,7 @@
                   </div>
                 </div>
               </div>
-            
+              
           </section>
         
       </main>
@@ -909,7 +905,12 @@
 
       // Abre a galeria de imagens
       function openGallery(title, images) {
-        if (images.length === 0) return;
+        console.log('Abrindo galeria:', title, images);
+        
+        if (!images || images.length === 0) {
+          console.log('Nenhuma imagem disponível');
+          return;
+        }
         
         currentGallery.images = images;
         currentGallery.currentIndex = 0;
@@ -918,14 +919,21 @@
         const modal = document.getElementById('galleryModal');
         const modalImg = document.getElementById('galleryImage');
         const captionText = document.getElementById('galleryCaption');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
         
         modal.style.display = 'block';
         modalImg.src = images[0];
         captionText.innerHTML = `${title} (1/${images.length})`;
         
         // Mostra/oculta botões de navegação baseado no número de imagens
-        document.querySelector('.prev').style.display = images.length > 1 ? 'block' : 'none';
-        document.querySelector('.next').style.display = images.length > 1 ? 'block' : 'none';
+        if (images.length > 1) {
+          prevBtn.style.display = 'block';
+          nextBtn.style.display = 'block';
+        } else {
+          prevBtn.style.display = 'none';
+          nextBtn.style.display = 'none';
+        }
       }
 
       // Navega entre as imagens da galeria
@@ -944,6 +952,8 @@
         
         modalImg.src = currentGallery.images[currentGallery.currentIndex];
         captionText.innerHTML = `${currentGallery.title} (${currentGallery.currentIndex + 1}/${currentGallery.images.length})`;
+        
+        console.log('Mudando para imagem:', currentGallery.currentIndex, currentGallery.images[currentGallery.currentIndex]);
       }
 
       // Abre modal de vídeo
@@ -966,8 +976,10 @@
         
         galleryModal.style.display = 'none';
         videoModal.style.display = 'none';
-        videoElement.pause();
-        videoElement.src = '';
+        if (videoElement) {
+          videoElement.pause();
+          videoElement.src = '';
+        }
       }
       
       // Event Listeners
@@ -975,6 +987,16 @@
         const galleryModal = document.getElementById('galleryModal');
         const videoModal = document.getElementById('videoModal');
         const closeBtns = document.querySelectorAll('.close');
+        const prevBtn = document.querySelector('.prev');
+        const nextBtn = document.querySelector('.next');
+        
+        // Configura botões de navegação
+        if (prevBtn) {
+          prevBtn.onclick = function() { changeImage(-1); };
+        }
+        if (nextBtn) {
+          nextBtn.onclick = function() { changeImage(1); };
+        }
         
         // Fecha modal ao clicar no X
         closeBtns.forEach(btn => {
