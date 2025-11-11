@@ -4,289 +4,170 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎄 Feliz Natal! Pedidos especiais para as festas</title>
+    <title>Bom dia pessoal! Pedidos abertos para entrega - 11/11 (TERÇA)</title>
     <style>
-      @import url('https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Roboto:wght@300;400;700&display=swap');
-      
       body {
-        font-family: 'Roboto', sans-serif;
-        background: linear-gradient(135deg, #1a5f23 0%, #2d8c3d 50%, #1a5f23 100%);
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
         margin: 0;
         padding: 0;
-        background-attachment: fixed;
       }
-      
-      .snowflake {
-        position: fixed;
-        background: white;
-        border-radius: 50%;
-        pointer-events: none;
-        opacity: 0.8;
-        z-index: 1000;
-      }
-      
       .container {
         max-width: 800px;
         margin: 0 auto;
-        background: white;
+        background-color: #fff;
         padding: 0;
-        position: relative;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-        border-radius: 15px 15px 0 0;
-        overflow: hidden;
       }
-      
       .header-bg {
-        background: linear-gradient(135deg, #c41e3a 0%, #e74c3c 50%, #c41e3a 100%);
-        padding: 30px 20px;
+        background-color: #f39c12;
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" style="opacity:0.2;"><circle cx="50" cy="50" r="40" fill="none" stroke="%23e67e22" stroke-width="5" /><circle cx="50" cy="50" r="20" fill="%23f7f1e3" /></svg>');
+        background-repeat: repeat;
+        padding: 20px;
         text-align: center;
+      }
+      .header-content {
         position: relative;
-        overflow: hidden;
+        padding-top: 50px;
       }
-      
-      .header-bg::before {
-        content: "🎄🎅✨";
-        position: absolute;
-        top: 10px;
-        left: 0;
-        right: 0;
-        font-size: 24px;
-        opacity: 0.3;
-      }
-      
       .logo-circle {
-        background: white;
-        border: 5px solid #2d8c3d;
+        background-color: #fff;
+        border: 4px solid #f39c12;
         border-radius: 50%;
-        padding: 15px;
+        padding: 10px;
         display: inline-block;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        position: relative;
-        z-index: 2;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
       }
-      
       .logo-circle img {
-        max-width: 100px;
+          max-width: 100px;
+          height: auto;
+      }
+      .qr-code img {
+        width: auto;       
         height: auto;
-        border-radius: 50%;
       }
-      
       .header-main-info {
-        background: linear-gradient(135deg, #2d8c3d 0%, #3aa655 100%);
-        padding: 25px 20px;
-        color: white;
-        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: 2px solid #27ae60;
       }
-      
-      .header-main-info::after {
-        content: "❄️";
-        position: absolute;
-        bottom: 5px;
-        right: 20px;
-        font-size: 20px;
-        opacity: 0.6;
-      }
-      
       .header-main-info h1 {
+        color: #27ae60;
         margin: 0;
-        font-size: 18px;
+        font-size: 16px;
+        text-transform: uppercase;
         font-weight: bold;
-        text-align: center;
-        font-family: 'Mountains of Christmas', cursive;
-        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
       }
-      
       .horario-info {
         display: flex;
         align-items: center;
-        justify-content: space-between;
-        margin-top: 15px;
-        background: rgba(255,255,255,0.1);
-        padding: 15px;
-        border-radius: 10px;
-        border: 2px dashed rgba(255,255,255,0.3);
+        gap: 15px;
+        font-weight: bold;
       }
-      
       .qr-code {
-        background: white;
-        padding: 8px;
-        border-radius: 10px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        width: 100px;
+        height: 120px;
+        background-color: #eee;
       }
-      
-      .qr-code img {
-        width: 80px;
-        height: auto;
-        border-radius: 5px;
-      }
-      
       .horario-text {
-        flex-grow: 1;
-        text-align: center;
-        font-weight: bold;
-        font-size: 16px;
-        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+          font-size: 14px;
       }
-      
+      .pix-info {
+        text-align: right;
+        font-weight: bold;
+      }
+      .pix-info span {
+        font-size: 1.5em;
+        color: #e67e22;
+      }
+      .pix-info p {
+        margin: 0;
+        font-size: 0.8em;
+      }
       .category {
-        margin: 25px 20px;
-        background: linear-gradient(135deg, #fff9f9 0%, #ffffff 100%);
-        border-radius: 15px;
-        padding: 20px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        border-left: 5px solid #c41e3a;
-        position: relative;
-        overflow: hidden;
+        margin-top: 20px;
       }
-      
-      .category::before {
-        content: "🎄";
-        position: absolute;
-        top: 10px;
-        right: 15px;
-        font-size: 20px;
-        opacity: 0.2;
-      }
-      
       .category-title {
-        font-size: 24px;
+        font-size: 22px;
         font-weight: bold;
-        color: #c41e3a;
-        margin-bottom: 20px;
+        color: #e67e22;
+        border-bottom: 2px solid #e67e22;
+        padding-bottom: 5px;
+        margin-bottom: 15px;
         text-transform: uppercase;
-        font-family: 'Mountains of Christmas', cursive;
-        text-align: center;
-        border-bottom: 3px dotted #2d8c3d;
-        padding-bottom: 10px;
       }
-      
       .item {
         display: flex;
         align-items: center;
-        background: white;
-        margin-bottom: 15px;
-        padding: 15px;
-        border-radius: 12px;
-        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-        border: 2px solid transparent;
-        transition: all 0.3s ease;
-        position: relative;
+        border-bottom: 1px dashed #ccc;
+        padding: 10px 0;
+        page-break-inside: avoid;
       }
-      
-      .item:hover {
-        border-color: #2d8c3d;
-        transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-      }
-      
-      .item::before {
-        content: "🎁";
-        position: absolute;
-        left: -10px;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 16px;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      
-      .item:hover::before {
-        opacity: 1;
-      }
-      
-      .item-image-container {
-        flex-shrink: 0;
-        margin-right: 20px;
-        position: relative;
-      }
-      
       .item-image {
-        border-radius: 10px;
-        width: 120px;
-        height: 120px;
+        flex-shrink: 0;
+        margin-right: 15px;
+        border-radius: 5px;
+        max-width: 80px;
+        height: auto;
         object-fit: cover;
-        border: 3px solid #2d8c3d;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.2);
-        cursor: pointer;
-        transition: all 0.3s ease;
       }
-      
-      .item-image:hover {
-        transform: scale(1.05);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-      }
-      
       .item-details {
         flex-grow: 1;
       }
-      
       .item-top {
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 8px;
       }
-      
       .item-name-info {
         flex-grow: 1;
+        font-weight: bold;
       }
-      
       .item-number {
-        background: #c41e3a;
-        color: white;
-        padding: 4px 8px;
-        border-radius: 20px;
-        font-size: 12px;
         font-weight: bold;
-        margin-right: 10px;
+        margin-right: 5px;
       }
-      
       .item-name {
-        font-weight: bold;
-        color: #2d8c3d;
-        font-size: 16px;
+        display: inline;
       }
-      
       .item-price {
-        background: linear-gradient(135deg, #c41e3a, #e74c3c);
-        color: white;
-        padding: 8px 15px;
-        border-radius: 25px;
         font-weight: bold;
-        font-size: 16px;
-        box-shadow: 0 3px 8px rgba(199, 30, 58, 0.3);
-        min-width: 80px;
-        text-align: center;
+        color: #e74c3c;
+        flex-shrink: 0;
+        margin-left: 15px;
       }
-      
       .item-weight {
         font-size: 14px;
-        color: #666;
-        font-style: italic;
+        color: #555;
         margin-top: 5px;
       }
+      footer {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 12px;
+        color: #777;
+        border-top: 1px solid #ddd;
+        padding-top: 10px;
+      }
       
-      .item-descricao {
-        font-size: 13px;
-        color: #888;
-        margin-top: 5px;
-        line-height: 1.4;
+      /* Estilos adicionais para imagens */
+      .item-image-container {
+        flex-shrink: 0;
+        margin-right: 15px;
       }
       
       .no-image {
-        width: 120px;
-        height: 120px;
-        background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
-        border: 3px solid #2d8c3d;
-        border-radius: 10px;
+        width: 80px;
+        height: 80px;
+        background: #f0f0f0;
+        border-radius: 5px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #999;
-        font-size: 12px;
+        font-size: 10px;
         text-align: center;
-        padding: 10px;
-        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
       }
       
       /* Modal para imagem ampliada */
@@ -299,7 +180,6 @@
         width: 100%;
         height: 100%;
         background-color: rgba(0,0,0,0.9);
-        animation: fadeIn 0.3s ease;
       }
       
       .modal-content {
@@ -311,9 +191,6 @@
         max-height: 90vh;
         top: 50%;
         transform: translateY(-50%);
-        border-radius: 10px;
-        box-shadow: 0 0 30px rgba(255,255,255,0.2);
-        animation: zoomIn 0.3s ease;
       }
       
       .modal-caption {
@@ -324,11 +201,6 @@
         text-align: center;
         color: #ccc;
         padding: 10px 0;
-        font-size: 16px;
-        background: rgba(0,0,0,0.8);
-        border-radius: 0 0 10px 10px;
-        position: relative;
-        top: -10px;
       }
       
       .close {
@@ -339,118 +211,22 @@
         font-size: 40px;
         font-weight: bold;
         cursor: pointer;
-        z-index: 2001;
-        transition: 0.3s;
-        background: rgba(0,0,0,0.5);
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
       }
       
       .close:hover {
-        color: #c41e3a;
-        background: rgba(255,255,255,0.9);
-        transform: scale(1.1);
-      }
-      
-      .modal-nav {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0,0,0,0.7);
-        color: white;
-        border: none;
-        font-size: 24px;
-        padding: 15px 20px;
-        cursor: pointer;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-      }
-      
-      .modal-nav:hover {
-        background: rgba(199, 30, 58, 0.9);
-        transform: translateY(-50%) scale(1.1);
-      }
-      
-      .modal-prev {
-        left: 20px;
-      }
-      
-      .modal-next {
-        right: 20px;
-      }
-      
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
-      }
-      
-      @keyframes zoomIn {
-        from { transform: translateY(-50%) scale(0.7); opacity: 0; }
-        to { transform: translateY(-50%) scale(1); opacity: 1; }
-      }
-      
-      footer {
-        background: linear-gradient(135deg, #2d8c3d 0%, #1a5f23 100%);
-        color: white;
-        text-align: center;
-        padding: 20px;
-        margin-top: 30px;
-        position: relative;
-        overflow: hidden;
-      }
-      
-      footer::before {
-        content: "✨🎅🎄";
-        position: absolute;
-        top: 10px;
-        left: 0;
-        right: 0;
-        font-size: 20px;
-        opacity: 0.3;
-      }
-      
-      .footer-content {
-        position: relative;
-        z-index: 2;
-      }
-      
-      .christmas-balls {
-        display: flex;
-        justify-content: center;
-        gap: 20px;
-        margin: 15px 0;
-      }
-      
-      .ball {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        animation: bounce 2s infinite;
-      }
-      
-      .ball.red { background: #c41e3a; animation-delay: 0s; }
-      .ball.gold { background: #ffd700; animation-delay: 0.5s; }
-      .ball.green { background: #2d8c3d; animation-delay: 1s; }
-      .ball.silver { background: #c0c0c0; animation-delay: 1.5s; }
-      
-      @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
+        color: #bbb;
       }
       
       @media (max-width: 600px) {
-        .container {
-          margin: 10px;
-          border-radius: 10px;
+        .header-main-info {
+          flex-direction: column;
+          gap: 15px;
+          text-align: center;
         }
         
         .horario-info {
           flex-direction: column;
-          gap: 15px;
+          gap: 10px;
         }
         
         .item {
@@ -460,50 +236,25 @@
         
         .item-image-container {
           margin-right: 0;
-          margin-bottom: 15px;
+          margin-bottom: 10px;
         }
         
-        .item-image, .no-image {
-          width: 140px;
-          height: 140px;
+        .item-top {
+          flex-direction: column;
+          align-items: center;
         }
         
-        .modal-content {
-          width: 95%;
-        }
-        
-        .modal-nav {
-          padding: 10px 15px;
-          font-size: 18px;
-        }
-        
-        .modal-prev {
-          left: 10px;
-        }
-        
-        .modal-next {
-          right: 10px;
-        }
-        
-        .close {
-          top: 10px;
-          right: 20px;
-          font-size: 30px;
-          width: 40px;
-          height: 40px;
+        .item-price {
+          margin-left: 0;
+          margin-top: 10px;
         }
       }
     </style>
   </head>
   <body>
-    <!-- Neve animada -->
-    <div id="snow"></div>
-    
     <!-- Modal para imagem ampliada -->
     <div id="imageModal" class="modal">
       <span class="close">&times;</span>
-      <button class="modal-nav modal-prev">❮</button>
-      <button class="modal-nav modal-next">❯</button>
       <img class="modal-content" id="expandedImg">
       <div id="imageCaption" class="modal-caption"></div>
     </div>
@@ -512,23 +263,54 @@
       <header>
         <div class="header-bg">
           <div class="logo-circle">
-            <img src="https://bolachariaelainemara.github.io/mara/IMG/logo_01.png" alt="Logo Natalino" onerror="this.style.display='none'; this.parentNode.innerHTML='🎄';">
+            <img src="https://bolachariaelainemara.github.io/mara/IMG/logo_01.png" alt="Logo" onerror="this.style.display='none'; this.parentNode.innerHTML='🍪';">
           </div>
         </div>
         <div class="header-main-info">
-          <h1>🎄 Feliz Natal! Pedidos especiais para as festas</h1>
+          <h1>Bom dia pessoal! Pedidos abertos para entrega - 11/11 (TERÇA)</h1>
           <div class="horario-info">
             <div class="qr-code">
-              <img src="https://bolachariaelainemara.github.io/natal/IMG/pix_qrcode.png" alt="QR Code para pedidos" onerror="this.style.display='none'; this.parentNode.innerHTML='📱';">
+              <img src="https://bolachariaelainemara.github.io/mara/IMG/pix_qrcode.png" alt="QR Code para pedidos" onerror="this.style.display='none'; this.parentNode.innerHTML='📱';">
             </div>
             <div class="horario-text">
-              🎁 COLEÇÃO DE NATAL 
+              ⏰ Horário para pedidos: até 12h para entrega a partir das 14h
             </div>
           </div>
         </div>
       </header>
       
       <main>
+        
+          <section class="category">
+            <h2 class="category-title">LISTA DE HOJE</h2>
+            
+              <div class="item">
+                <div class="item-image-container">
+                  
+                    
+                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
+                      <img src="https://bolachariaelainemara.github.io/mara/IMG/NATAL.JPG" 
+                           class="item-image" 
+                           alt="PEDIDO ATÉ AS 13h" 
+                           loading="lazy"
+                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
+                           onclick="openModal(this, 'PEDIDO ATÉ AS 13h')">
+                    
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">00</span>
+                      <span class="item-name">PEDIDO ATÉ AS 13h</span>
+                      
+                    </div>
+                    <div class="item-price">R$ 0,00</div>
+                  </div>
+                </div>
+              </div>
+            
+          </section>
         
           <section class="category">
             <h2 class="category-title">BOLACHA DOCE</h2>
@@ -538,7 +320,7 @@
                   
                     
                       <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/IMG/NATAL.JPG" 
+                      <img src="https://bolachariaelainemara.github.io/mara/IMG/Marcador-de-livro3uni.jpg" 
                            class="item-image" 
                            alt="Broa de Milho" 
                            loading="lazy"
@@ -550,10 +332,9 @@
                 <div class="item-details">
                   <div class="item-top">
                     <div class="item-name-info">
-                      <span class="item-number">01.01.01</span>
+                      <span class="item-number">01</span>
                       <span class="item-name">Broa de Milho</span>
-                      <div class="item-weight">caixa surpresa com biscoitos selecionados prontas para entrega </div>
-                      
+                      <div class="item-weight">150 g</div>
                     </div>
                     <div class="item-price">R$ 12,00</div>
                   </div>
@@ -565,76 +346,12 @@
                   
                     
                       <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/IMG/natal2.jpg" 
+                      <img src="https://bolachariaelainemara.github.io/mara/IMG/natal2.jpg" 
                            class="item-image" 
-                           alt="TESTANDO" 
+                           alt="Beliscão de Goiabada" 
                            loading="lazy"
                            onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'TESTANDO')">
-                    
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01</span>
-                      <span class="item-name">TESTANDO</span>
-                      <div class="item-weight">UMA MAO</div>
-                      
-                    </div>
-                    <div class="item-price">R$ 0,00</div>
-                  </div>
-                </div>
-              </div>
-            
-          </section>
-        
-          <section class="category">
-            <h2 class="category-title">#N/A</h2>
-            
-              <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/IMG/Marcador-de-livro3uni.jpg" 
-                           class="item-image" 
-                           alt="#N/A" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, '#N/A')">
-                    
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01</span>
-                      <span class="item-name">#N/A</span>
-                      <div class="item-weight">#N/A</div>
-                      
-                    </div>
-                    <div class="item-price">R$ 5,50</div>
-                  </div>
-                </div>
-              </div>
-            
-          </section>
-        
-          <section class="category">
-            <h2 class="category-title">ESPECIAIS DE NATAL</h2>
-            
-              <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/IMG/natal2.jpg" 
-                           class="item-image" 
-                           alt="ESTE É UMA VERIFICAÇÃO" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'ESTE É UMA VERIFICAÇÃO')">
+                           onclick="openModal(this, 'Beliscão de Goiabada')">
                     
                   
                 </div>
@@ -642,11 +359,10 @@
                   <div class="item-top">
                     <div class="item-name-info">
                       <span class="item-number">02</span>
-                      <span class="item-name">ESTE É UMA VERIFICAÇÃO</span>
-                      <div class="item-weight">VER QUAL EP</div>
-                      
+                      <span class="item-name">Beliscão de Goiabada</span>
+                      <div class="item-weight">130 g</div>
                     </div>
-                    <div class="item-price">R$ 5,80</div>
+                    <div class="item-price">R$ 0,00</div>
                   </div>
                 </div>
               </div>
@@ -656,12 +372,12 @@
                   
                     
                       <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/IMG/natal2.jpg" 
+                      <img src="https://bolachariaelainemara.github.io/mara/IMG/natal2.jpg" 
                            class="item-image" 
-                           alt="GEEEDGDFGD" 
+                           alt="Bolacha Recheada de Doce de Leite" 
                            loading="lazy"
                            onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'GEEEDGDFGD')">
+                           onclick="openModal(this, 'Bolacha Recheada de Doce de Leite')">
                     
                   
                 </div>
@@ -669,11 +385,10 @@
                   <div class="item-top">
                     <div class="item-name-info">
                       <span class="item-number">03</span>
-                      <span class="item-name">GEEEDGDFGD</span>
-                      <div class="item-weight">GDGDGFDGF</div>
-                      
+                      <span class="item-name">Bolacha Recheada de Doce de Leite</span>
+                      <div class="item-weight">130 g</div>
                     </div>
-                    <div class="item-price">R$ 5,80</div>
+                    <div class="item-price">R$ 15,00</div>
                   </div>
                 </div>
               </div>
@@ -683,12 +398,12 @@
                   
                     
                       <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/IMG/NATAL.JPG" 
+                      <img src="https://bolachariaelainemara.github.io/mara/IMG/natal2.jpg" 
                            class="item-image" 
-                           alt="GEEEDGDFGD" 
+                           alt="Bolacha de Nata e Coco" 
                            loading="lazy"
                            onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'GEEEDGDFGD')">
+                           onclick="openModal(this, 'Bolacha de Nata e Coco')">
                     
                   
                 </div>
@@ -696,11 +411,210 @@
                   <div class="item-top">
                     <div class="item-name-info">
                       <span class="item-number">04</span>
-                      <span class="item-name">GEEEDGDFGD</span>
-                      <div class="item-weight">GDGDGFDGF</div>
+                      <span class="item-name">Bolacha de Nata e Coco</span>
+                      <div class="item-weight">150 g</div>
+                    </div>
+                    <div class="item-price">R$ 15,00</div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="item-image-container">
+                  
+                    
+                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
+                      <img src="https://bolachariaelainemara.github.io/mara/IMG/NATAL.JPG" 
+                           class="item-image" 
+                           alt="Bolacha de Castanha de Caju com Canela" 
+                           loading="lazy"
+                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
+                           onclick="openModal(this, 'Bolacha de Castanha de Caju com Canela')">
+                    
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">05</span>
+                      <span class="item-name">Bolacha de Castanha de Caju com Canela</span>
                       
                     </div>
-                    <div class="item-price">R$ 5,80</div>
+                    <div class="item-price">R$ 15,00</div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="item-image-container">
+                  
+                    <div class="no-image">
+                      🍪<br>
+                      Sem<br>
+                      Imagem
+                    </div>
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">06</span>
+                      <span class="item-name">Bolacha Coração de Limão</span>
+                      
+                    </div>
+                    <div class="item-price">R$ 15,00</div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="item-image-container">
+                  
+                    <div class="no-image">
+                      🍪<br>
+                      Sem<br>
+                      Imagem
+                    </div>
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">11</span>
+                      <span class="item-name">Bolacha Craquelada de café</span>
+                      
+                    </div>
+                    <div class="item-price">R$ 15,00</div>
+                  </div>
+                </div>
+              </div>
+            
+          </section>
+        
+          <section class="category">
+            <h2 class="category-title">BOLACHA SALGADA</h2>
+            
+              <div class="item">
+                <div class="item-image-container">
+                  
+                    <div class="no-image">
+                      🍪<br>
+                      Sem<br>
+                      Imagem
+                    </div>
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">07</span>
+                      <span class="item-name">Cracker salgadinho de parmesão e orégano</span>
+                      
+                    </div>
+                    <div class="item-price">R$ 15,00</div>
+                  </div>
+                </div>
+              </div>
+            
+          </section>
+        
+          <section class="category">
+            <h2 class="category-title">SALGADOS</h2>
+            
+              <div class="item">
+                <div class="item-image-container">
+                  
+                    <div class="no-image">
+                      🍪<br>
+                      Sem<br>
+                      Imagem
+                    </div>
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">08</span>
+                      <span class="item-name">Chipa Paraguaia (congelada)</span>
+                      <div class="item-weight">250 g</div>
+                    </div>
+                    <div class="item-price">R$ 25,00</div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="item-image-container">
+                  
+                    <div class="no-image">
+                      🍪<br>
+                      Sem<br>
+                      Imagem
+                    </div>
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">09</span>
+                      <span class="item-name">Sopa Paraguaia </span>
+                      <div class="item-weight">75 g</div>
+                    </div>
+                    <div class="item-price">R$ 6,00</div>
+                  </div>
+                </div>
+              </div>
+            
+          </section>
+        
+          <section class="category">
+            <h2 class="category-title">Geral</h2>
+            
+              <div class="item">
+                <div class="item-image-container">
+                  
+                    <div class="no-image">
+                      🍪<br>
+                      Sem<br>
+                      Imagem
+                    </div>
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">10</span>
+                      <span class="item-name">Sopa Paraguaia </span>
+                      <div class="item-weight">100 g</div>
+                    </div>
+                    <div class="item-price">R$ 8,00</div>
+                  </div>
+                </div>
+              </div>
+            
+          </section>
+        
+          <section class="category">
+            <h2 class="category-title">trdtrdtr</h2>
+            
+              <div class="item">
+                <div class="item-image-container">
+                  
+                    <div class="no-image">
+                      🍪<br>
+                      Sem<br>
+                      Imagem
+                    </div>
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">00</span>
+                      <span class="item-name">ugguyg</span>
+                      
+                    </div>
+                    <div class="item-price">R$ 15,00</div>
                   </div>
                 </div>
               </div>
@@ -710,71 +624,14 @@
       </main>
       
       <footer>
-        <div class="footer-content">
-          <div class="christmas-balls">
-            <div class="ball red"></div>
-            <div class="ball gold"></div>
-            <div class="ball green"></div>
-            <div class="ball silver"></div>
-          </div>
-          <p style="margin: 0; font-weight: bold;">🎅 Feliz Natal e Próspero Ano Novo! 🎄</p>
-          <p style="margin: 10px 0 0 0; font-size: 12px; opacity: 0.8;">
-            Atualizado em 11/11/2025 • Que suas festas sejam iluminadas! ✨
-          </p>
-        </div>
+        <p>© 2025 Bolacharia Elaine Mara - Todos os direitos reservados</p>
+        <p>Atualizado em 11/11/2025</p>
       </footer>
     </div>
 
     <script>
-      // Efeito de neve
-      function createSnow() {
-        const snowContainer = document.getElementById('snow');
-        const snowflakes = 50;
-        
-        for (let i = 0; i < snowflakes; i++) {
-          const snowflake = document.createElement('div');
-          snowflake.className = 'snowflake';
-          
-          const size = Math.random() * 5 + 2;
-          const posX = Math.random() * 100;
-          const delay = Math.random() * 5;
-          const duration = Math.random() * 3 + 5;
-          
-          snowflake.style.width = size + 'px';
-          snowflake.style.height = size + 'px';
-          snowflake.style.left = posX + 'vw';
-          snowflake.style.animationDelay = delay + 's';
-          snowflake.style.animation = 'fall ' + duration + 's linear infinite';
-          
-          snowContainer.appendChild(snowflake);
-        }
-        
-        // Adiciona estilo para a animação de queda
-        const style = document.createElement('style');
-        style.textContent = `
-          @keyframes fall {
-            0% {
-              transform: translateY(-100vh) rotate(0deg);
-              opacity: 1;
-            }
-            100% {
-              transform: translateY(100vh) rotate(360deg);
-              opacity: 0;
-            }
-          }
-        `;
-        document.head.appendChild(style);
-      }
-      
       // Sistema de modal para imagens ampliadas
-      let currentImageIndex = 0;
-      let allImages = [];
-      
       function openModal(element, caption) {
-        // Coleta todas as imagens da página
-        allImages = Array.from(document.querySelectorAll('.item-image'));
-        currentImageIndex = allImages.indexOf(element);
-        
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('expandedImg');
         const captionText = document.getElementById('imageCaption');
@@ -782,52 +639,20 @@
         modal.style.display = 'block';
         modalImg.src = element.src;
         captionText.innerHTML = caption;
-        
-        // Previne scroll do body quando modal está aberto
-        document.body.style.overflow = 'hidden';
       }
       
       function closeModal() {
         const modal = document.getElementById('imageModal');
         modal.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      }
-      
-      function navigateImage(direction) {
-        if (allImages.length === 0) return;
-        
-        currentImageIndex += direction;
-        
-        // Loop através das imagens
-        if (currentImageIndex >= allImages.length) {
-          currentImageIndex = 0;
-        } else if (currentImageIndex < 0) {
-          currentImageIndex = allImages.length - 1;
-        }
-        
-        const nextImage = allImages[currentImageIndex];
-        const modalImg = document.getElementById('expandedImg');
-        const captionText = document.getElementById('imageCaption');
-        
-        modalImg.src = nextImage.src;
-        captionText.innerHTML = nextImage.alt;
       }
       
       // Event Listeners
       document.addEventListener('DOMContentLoaded', function() {
-        createSnow();
-        
         const modal = document.getElementById('imageModal');
         const closeBtn = document.querySelector('.close');
-        const prevBtn = document.querySelector('.modal-prev');
-        const nextBtn = document.querySelector('.modal-next');
         
         // Fecha modal ao clicar no X
         closeBtn.onclick = closeModal;
-        
-        // Navegação entre imagens
-        prevBtn.onclick = () => navigateImage(-1);
-        nextBtn.onclick = () => navigateImage(1);
         
         // Fecha modal ao clicar fora da imagem
         modal.onclick = function(event) {
@@ -836,16 +661,10 @@
           }
         }
         
-        // Navegação com teclado
+        // Fecha modal com tecla ESC
         document.addEventListener('keydown', function(event) {
-          if (modal.style.display === 'block') {
-            if (event.key === 'Escape') {
-              closeModal();
-            } else if (event.key === 'ArrowLeft') {
-              navigateImage(-1);
-            } else if (event.key === 'ArrowRight') {
-              navigateImage(1);
-            }
+          if (event.key === 'Escape') {
+            closeModal();
           }
         });
       });
