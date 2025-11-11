@@ -131,18 +131,57 @@
       }
       .item {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         border-bottom: 1px dashed #ccc;
-        padding: 10px 0;
+        padding: 15px 0;
         page-break-inside: avoid;
       }
-      .item-image {
-        flex-shrink: 0;
+      .item-media-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
         margin-right: 15px;
+        min-width: 250px;
+      }
+      .item-media-row {
+        display: flex;
+        gap: 8px;
+      }
+      .media-item {
+        width: 80px;
+        height: 80px;
         border-radius: 5px;
-        max-width: 80px;
-        height: auto;
         object-fit: cover;
+        border: 2px solid #e67e22;
+        cursor: pointer;
+      }
+      .video-item {
+        width: 100%;
+        max-width: 250px;
+        height: 140px;
+        border-radius: 5px;
+        background: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px dashed #e67e22;
+      }
+      .video-icon {
+        font-size: 24px;
+        color: #e67e22;
+      }
+      .no-media {
+        width: 80px;
+        height: 80px;
+        background: #f0f0f0;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        font-size: 10px;
+        text-align: center;
+        border: 1px dashed #ccc;
       }
       .item-details {
         flex-grow: 1;
@@ -175,6 +214,12 @@
         color: #555;
         margin-top: 5px;
       }
+      .item-description {
+        font-size: 14px;
+        color: #666;
+        margin-top: 8px;
+        font-style: italic;
+      }
       footer {
         text-align: center;
         margin-top: 30px;
@@ -183,25 +228,6 @@
         border-top: 1px solid #ddd;
         padding-top: 10px;
         padding: 20px;
-      }
-      
-      /* Estilos adicionais para imagens */
-      .item-image-container {
-        flex-shrink: 0;
-        margin-right: 15px;
-      }
-      
-      .no-image {
-        width: 80px;
-        height: 80px;
-        background: #f0f0f0;
-        border-radius: 5px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: #999;
-        font-size: 10px;
-        text-align: center;
       }
       
       /* Modal para imagem ampliada */
@@ -250,6 +276,39 @@
       .close:hover {
         color: #bbb;
       }
+
+      /* Modal para vídeo */
+      .video-modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.9);
+      }
+      
+      .video-modal-content {
+        position: relative;
+        margin: auto;
+        display: block;
+        width: 90%;
+        max-width: 800px;
+        max-height: 90vh;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      
+      .video-modal-caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 800px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+      }
       
       @media (max-width: 600px) {
         .header-main-info {
@@ -272,9 +331,15 @@
           text-align: center;
         }
         
-        .item-image-container {
+        .item-media-container {
           margin-right: 0;
           margin-bottom: 10px;
+          min-width: auto;
+          align-items: center;
+        }
+        
+        .item-media-row {
+          justify-content: center;
         }
         
         .item-top {
@@ -296,6 +361,15 @@
       <img class="modal-content" id="expandedImg">
       <div id="imageCaption" class="modal-caption"></div>
     </div>
+
+    <!-- Modal para vídeo -->
+    <div id="videoModal" class="video-modal">
+      <span class="close">&times;</span>
+      <video class="video-modal-content" id="expandedVideo" controls>
+        Seu navegador não suporta o elemento de vídeo.
+      </video>
+      <div id="videoCaption" class="video-modal-caption"></div>
+    </div>
     
     <div class="container">
       <header>
@@ -312,7 +386,7 @@
             </div>
             <div class="pix-info">
               <div class="pix-number">PIX: 76036014104</div>
-              <div class="preco">R$ 15,00</div>
+              <div class="preco"></div>
               <div class="social-buttons">
                 <a href="https://wa.me/5567999848476" target="_blank" class="whatsapp-btn">
                   📱 WhatsApp
@@ -332,17 +406,43 @@
             <h2 class="category-title">BOLACHA DOCE</h2>
             
               <div class="item">
-                <div class="item-image-container">
+                <div class="item-media-container">
+                  <div class="item-media-row">
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/broa.jpg" 
+                               class="media-item" 
+                               alt="Broa de Milho - Foto 1" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 1<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Broa de Milho - Foto 1')">
+                        
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 2<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
                   
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/broa.jpg" 
-                           class="item-image" 
-                           alt="Broa de Milho" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Broa de Milho')">
-                    
+                    <div class="no-media">
+                      🎬<br>
+                      Sem<br>
+                      Vídeo
+                    </div>
                   
                 </div>
                 <div class="item-details">
@@ -351,6 +451,7 @@
                       <span class="item-number">01.01.01</span>
                       <span class="item-name">Broa de Milho</span>
                       <div class="item-weight">150 g</div>
+                      
                     </div>
                     <div class="item-price">R$ 12,00</div>
                   </div>
@@ -358,17 +459,43 @@
               </div>
             
               <div class="item">
-                <div class="item-image-container">
+                <div class="item-media-container">
+                  <div class="item-media-row">
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/beliscao.jpg" 
+                               class="media-item" 
+                               alt="Beliscão de Goiabada - Foto 1" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 1<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Beliscão de Goiabada - Foto 1')">
+                        
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 2<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
                   
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/beliscao.jpg" 
-                           class="item-image" 
-                           alt="Beliscão de Goiabada" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Beliscão de Goiabada')">
-                    
+                    <div class="no-media">
+                      🎬<br>
+                      Sem<br>
+                      Vídeo
+                    </div>
                   
                 </div>
                 <div class="item-details">
@@ -377,83 +504,6 @@
                       <span class="item-number">01.01.02</span>
                       <span class="item-name">Beliscão de Goiabada</span>
                       <div class="item-weight">130 g</div>
-                    </div>
-                    <div class="item-price">R$ 15,00</div>
-                  </div>
-                </div>
-              </div>
-            
-              <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/bolachadocedeleite.jpg" 
-                           class="item-image" 
-                           alt="Bolacha Recheada de Doce de Leite" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Bolacha Recheada de Doce de Leite')">
-                    
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.03</span>
-                      <span class="item-name">Bolacha Recheada de Doce de Leite</span>
-                      <div class="item-weight">130 g</div>
-                    </div>
-                    <div class="item-price">R$ 15,00</div>
-                  </div>
-                </div>
-              </div>
-            
-              <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/broa_natacoco.jpg" 
-                           class="item-image" 
-                           alt="Bolacha de Nata e Coco" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Bolacha de Nata e Coco')">
-                    
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.04</span>
-                      <span class="item-name">Bolacha de Nata e Coco</span>
-                      <div class="item-weight">150 g</div>
-                    </div>
-                    <div class="item-price">R$ 15,00</div>
-                  </div>
-                </div>
-              </div>
-            
-              <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/castanha de caju.jpg" 
-                           class="item-image" 
-                           alt="Bolacha de Castanha de Caju com Canela" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Bolacha de Castanha de Caju com Canela')">
-                    
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.05</span>
-                      <span class="item-name">Bolacha de Castanha de Caju com Canela</span>
                       
                     </div>
                     <div class="item-price">R$ 15,00</div>
@@ -462,12 +512,198 @@
               </div>
             
               <div class="item">
-                <div class="item-image-container">
+                <div class="item-media-container">
+                  <div class="item-media-row">
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/bolachadocedeleite.jpg" 
+                               class="media-item" 
+                               alt="Bolacha Recheada de Doce de Leite - Foto 1" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 1<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Bolacha Recheada de Doce de Leite - Foto 1')">
+                        
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 2<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
                   
-                    <div class="no-image">
-                      🍪<br>
+                    <div class="no-media">
+                      🎬<br>
                       Sem<br>
-                      Imagem
+                      Vídeo
+                    </div>
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">01.01.03</span>
+                      <span class="item-name">Bolacha Recheada de Doce de Leite</span>
+                      <div class="item-weight">130 g</div>
+                      
+                    </div>
+                    <div class="item-price">R$ 15,00</div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="item-media-container">
+                  <div class="item-media-row">
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/broa_natacoco.jpg" 
+                               class="media-item" 
+                               alt="Bolacha de Nata e Coco - Foto 1" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 1<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Bolacha de Nata e Coco - Foto 1')">
+                        
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 2<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
+                  
+                    <div class="no-media">
+                      🎬<br>
+                      Sem<br>
+                      Vídeo
+                    </div>
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">01.01.04</span>
+                      <span class="item-name">Bolacha de Nata e Coco</span>
+                      <div class="item-weight">150 g</div>
+                      
+                    </div>
+                    <div class="item-price">R$ 15,00</div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="item-media-container">
+                  <div class="item-media-row">
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/castanha de caju.jpg" 
+                               class="media-item" 
+                               alt="Bolacha de Castanha de Caju com Canela - Foto 1" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 1<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Bolacha de Castanha de Caju com Canela - Foto 1')">
+                        
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 2<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
+                  
+                    <div class="no-media">
+                      🎬<br>
+                      Sem<br>
+                      Vídeo
+                    </div>
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">01.01.05</span>
+                      <span class="item-name">Bolacha de Castanha de Caju com Canela</span>
+                      
+                      
+                    </div>
+                    <div class="item-price">R$ 15,00</div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="item-media-container">
+                  <div class="item-media-row">
+                    
+                      
+                        <div class="no-media">
+                          📷 1<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 2<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
+                  
+                    <div class="no-media">
+                      🎬<br>
+                      Sem<br>
+                      Vídeo
                     </div>
                   
                 </div>
@@ -477,31 +713,6 @@
                       <span class="item-number">01.01.06</span>
                       <span class="item-name">Bolacha Coração de Limão</span>
                       
-                    </div>
-                    <div class="item-price">R$ 15,00</div>
-                  </div>
-                </div>
-              </div>
-            
-              <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/craquelado_cafe.jpg" 
-                           class="item-image" 
-                           alt="Bolacha Craquelada de café" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Bolacha Craquelada de café')">
-                    
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.07</span>
-                      <span class="item-name">Bolacha Craquelada de café</span>
                       
                     </div>
                     <div class="item-price">R$ 15,00</div>
@@ -510,17 +721,96 @@
               </div>
             
               <div class="item">
-                <div class="item-image-container">
+                <div class="item-media-container">
+                  <div class="item-media-row">
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/craquelado_cafe.jpg" 
+                               class="media-item" 
+                               alt="Bolacha Craquelada de café - Foto 1" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 1<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Bolacha Craquelada de café - Foto 1')">
+                        
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 2<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
                   
+                    <div class="no-media">
+                      🎬<br>
+                      Sem<br>
+                      Vídeo
+                    </div>
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">01.01.07</span>
+                      <span class="item-name">Bolacha Craquelada de café</span>
+                      
+                      
+                    </div>
+                    <div class="item-price">R$ 15,00</div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="item-media-container">
+                  <div class="item-media-row">
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/cookie_chocolate.jpg" 
-                           class="item-image" 
-                           alt="Cookie de Chocolate " 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Cookie de Chocolate ')">
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/cookie_chocolate.jpg" 
+                               class="media-item" 
+                               alt="Cookie de Chocolate  - Foto 1" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 1<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Cookie de Chocolate  - Foto 1')">
+                        
+                      
                     
+                      
+                        <div class="no-media">
+                          📷 2<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
+                  
+                    <div class="no-media">
+                      🎬<br>
+                      Sem<br>
+                      Vídeo
+                    </div>
                   
                 </div>
                 <div class="item-details">
@@ -529,6 +819,7 @@
                       <span class="item-number">01.01.08</span>
                       <span class="item-name">Cookie de Chocolate </span>
                       <div class="item-weight">2Un</div>
+                      
                     </div>
                     <div class="item-price">R$ 8,00</div>
                   </div>
@@ -541,17 +832,46 @@
             <h2 class="category-title">BOLACHA SALGADA</h2>
             
               <div class="item">
-                <div class="item-image-container">
+                <div class="item-media-container">
+                  <div class="item-media-row">
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg" 
+                               class="media-item" 
+                               alt="Cracker salgadinho de parmesão e orégano - Foto 1" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 1<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Cracker salgadinho de parmesão e orégano - Foto 1')">
+                        
+                      
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg" 
+                               class="media-item" 
+                               alt="Cracker salgadinho de parmesão e orégano - Foto 2" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 2<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Cracker salgadinho de parmesão e orégano - Foto 2')">
+                        
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
                   
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg" 
-                           class="item-image" 
-                           alt="Cracker salgadinho de parmesão e orégano" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Cracker salgadinho de parmesão e orégano')">
-                    
+                    <div class="no-media">
+                      🎬<br>
+                      Sem<br>
+                      Vídeo
+                    </div>
                   
                 </div>
                 <div class="item-details">
@@ -560,6 +880,7 @@
                       <span class="item-number">02.02.01</span>
                       <span class="item-name">Cracker salgadinho de parmesão e orégano</span>
                       
+                      
                     </div>
                     <div class="item-price">R$ 15,00</div>
                   </div>
@@ -567,17 +888,46 @@
               </div>
             
               <div class="item">
-                <div class="item-image-container">
+                <div class="item-media-container">
+                  <div class="item-media-row">
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg" 
+                               class="media-item" 
+                               alt="Cracker salgadinho de parmesão e orégano - Foto 1" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 1<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Cracker salgadinho de parmesão e orégano - Foto 1')">
+                        
+                      
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg" 
+                               class="media-item" 
+                               alt="Cracker salgadinho de parmesão e orégano - Foto 2" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 2<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Cracker salgadinho de parmesão e orégano - Foto 2')">
+                        
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
                   
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg" 
-                           class="item-image" 
-                           alt="Cracker salgadinho de parmesão e orégano" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Cracker salgadinho de parmesão e orégano')">
-                    
+                    <div class="no-media">
+                      🎬<br>
+                      Sem<br>
+                      Vídeo
+                    </div>
                   
                 </div>
                 <div class="item-details">
@@ -585,6 +935,7 @@
                     <div class="item-name-info">
                       <span class="item-number">05.02.01</span>
                       <span class="item-name">Cracker salgadinho de parmesão e orégano</span>
+                      
                       
                     </div>
                     <div class="item-price">R$ 0,00</div>
@@ -598,17 +949,43 @@
             <h2 class="category-title">SALGADOS</h2>
             
               <div class="item">
-                <div class="item-image-container">
+                <div class="item-media-container">
+                  <div class="item-media-row">
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/chipa.jpg" 
+                               class="media-item" 
+                               alt="Chipa Paraguaia (congelada) - Foto 1" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 1<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Chipa Paraguaia (congelada) - Foto 1')">
+                        
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 2<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
                   
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/chipa.jpg" 
-                           class="item-image" 
-                           alt="Chipa Paraguaia (congelada)" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Chipa Paraguaia (congelada)')">
-                    
+                    <div class="no-media">
+                      🎬<br>
+                      Sem<br>
+                      Vídeo
+                    </div>
                   
                 </div>
                 <div class="item-details">
@@ -617,6 +994,7 @@
                       <span class="item-number">02.01.01</span>
                       <span class="item-name">Chipa Paraguaia (congelada)</span>
                       <div class="item-weight">250 g</div>
+                      
                     </div>
                     <div class="item-price">R$ 25,00</div>
                   </div>
@@ -624,17 +1002,43 @@
               </div>
             
               <div class="item">
-                <div class="item-image-container">
+                <div class="item-media-container">
+                  <div class="item-media-row">
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/sopa75.jpg" 
+                               class="media-item" 
+                               alt="Sopa Paraguaia  - Foto 1" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 1<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Sopa Paraguaia  - Foto 1')">
+                        
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 2<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
                   
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/sopa75.jpg" 
-                           class="item-image" 
-                           alt="Sopa Paraguaia " 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Sopa Paraguaia ')">
-                    
+                    <div class="no-media">
+                      🎬<br>
+                      Sem<br>
+                      Vídeo
+                    </div>
                   
                 </div>
                 <div class="item-details">
@@ -643,6 +1047,7 @@
                       <span class="item-number">02.01.02</span>
                       <span class="item-name">Sopa Paraguaia </span>
                       <div class="item-weight">75 g</div>
+                      
                     </div>
                     <div class="item-price">R$ 6,00</div>
                   </div>
@@ -650,17 +1055,43 @@
               </div>
             
               <div class="item">
-                <div class="item-image-container">
+                <div class="item-media-container">
+                  <div class="item-media-row">
+                    
+                      
+                        
+                          <img src="https://bolachariaelainemara.github.io/mara/IMG/sopa100.jpg" 
+                               class="media-item" 
+                               alt="Sopa Paraguaia  - Foto 1" 
+                               loading="lazy"
+                               onerror="this.style.display='none'; this.outerHTML='<div class=\'no-media\'>📷 1<br>Não Carregou</div>';"
+                               onclick="openImageModal(this, 'Sopa Paraguaia  - Foto 1')">
+                        
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 2<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                      
+                        <div class="no-media">
+                          📷 3<br>
+                          Sem<br>
+                          Foto
+                        </div>
+                      
+                    
+                  </div>
                   
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG/sopa100.jpg" 
-                           class="item-image" 
-                           alt="Sopa Paraguaia " 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openModal(this, 'Sopa Paraguaia ')">
-                    
+                    <div class="no-media">
+                      🎬<br>
+                      Sem<br>
+                      Vídeo
+                    </div>
                   
                 </div>
                 <div class="item-details">
@@ -669,6 +1100,7 @@
                       <span class="item-number">02.01.03</span>
                       <span class="item-name">Sopa Paraguaia </span>
                       <div class="item-weight">100 g</div>
+                      
                     </div>
                     <div class="item-price">R$ 8,00</div>
                   </div>
@@ -687,7 +1119,7 @@
 
     <script>
       // Sistema de modal para imagens ampliadas
-      function openModal(element, caption) {
+      function openImageModal(element, caption) {
         const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('expandedImg');
         const captionText = document.getElementById('imageCaption');
@@ -696,23 +1128,50 @@
         modalImg.src = element.src;
         captionText.innerHTML = caption;
       }
+
+      // Sistema de modal para vídeos
+      function openVideoModal(videoUrl, caption) {
+        const modal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('expandedVideo');
+        const captionText = document.getElementById('videoCaption');
+        
+        modal.style.display = 'block';
+        modalVideo.src = videoUrl;
+        captionText.innerHTML = caption;
+        modalVideo.load();
+      }
       
       function closeModal() {
-        const modal = document.getElementById('imageModal');
-        modal.style.display = 'none';
+        const imageModal = document.getElementById('imageModal');
+        const videoModal = document.getElementById('videoModal');
+        const videoElement = document.getElementById('expandedVideo');
+        
+        imageModal.style.display = 'none';
+        videoModal.style.display = 'none';
+        videoElement.pause();
+        videoElement.src = '';
       }
       
       // Event Listeners
       document.addEventListener('DOMContentLoaded', function() {
-        const modal = document.getElementById('imageModal');
-        const closeBtn = document.querySelector('.close');
+        const imageModal = document.getElementById('imageModal');
+        const videoModal = document.getElementById('videoModal');
+        const closeBtns = document.querySelectorAll('.close');
         
         // Fecha modal ao clicar no X
-        closeBtn.onclick = closeModal;
+        closeBtns.forEach(btn => {
+          btn.onclick = closeModal;
+        });
         
-        // Fecha modal ao clicar fora da imagem
-        modal.onclick = function(event) {
-          if (event.target === modal) {
+        // Fecha modal ao clicar fora da imagem/vídeo
+        imageModal.onclick = function(event) {
+          if (event.target === imageModal) {
+            closeModal();
+          }
+        }
+        
+        videoModal.onclick = function(event) {
+          if (event.target === videoModal) {
             closeModal();
           }
         }
