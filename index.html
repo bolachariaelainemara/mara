@@ -4,173 +4,217 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bom dia pessoal! Pedidos abertos para entrega - 11/11 (TERÇA)</title>
+    <title>BOM DIA PESSOAL! PEDIDOS ABERTOS PARA ENTREGA - 11/11 (TERÇA)</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
+      * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
       }
+      
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        line-height: 1.4;
+      }
+      
       .container {
         max-width: 800px;
         margin: 0 auto;
         background-color: #fff;
-        padding: 0;
-      }
-      .header-bg {
-        background-color: #f39c12;
-        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" style="opacity:0.2;"><circle cx="50" cy="50" r="40" fill="none" stroke="%23e67e22" stroke-width="5" /><circle cx="50" cy="50" r="20" fill="%23f7f1e3" /></svg>');
-        background-repeat: repeat;
-        padding: 20px;
-        text-align: center;
-      }
-      .header-content {
-        position: relative;
-        padding-top: 50px;
-      }
-      .logo-circle {
-        background-color: #fff;
-        border: 4px solid #f39c12;
-        border-radius: 50%;
-        padding: 10px;
-        display: inline-block;
-        box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      }
-      .logo-circle img {
-          max-width: 100px;
-          height: auto;
-      }
-      .qr-code img {
-        width: auto;       
-        height: auto;
-      }
-      .header-main-info {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 0;
-        border-bottom: 2px solid #27ae60;
-      }
-      .header-main-info h1 {
-        color: #27ae60;
-        margin: 0;
-        font-size: 16px;
-        text-transform: uppercase;
-        font-weight: bold;
-      }
-      .horario-info {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        font-weight: bold;
-      }
-      .qr-code {
-        width: 100px;
-        height: 120px;
-        background-color: #eee;
-      }
-      .horario-text {
-          font-size: 14px;
-      }
-      .pix-info {
-        text-align: right;
-        font-weight: bold;
-      }
-      .pix-info span {
-        font-size: 1.5em;
-        color: #e67e22;
-      }
-      .pix-info p {
-        margin: 0;
-        font-size: 0.8em;
-      }
-      .category {
-        margin-top: 20px;
-      }
-      .category-title {
-        font-size: 22px;
-        font-weight: bold;
-        color: #e67e22;
-        border-bottom: 2px solid #e67e22;
-        padding-bottom: 5px;
-        margin-bottom: 15px;
-        text-transform: uppercase;
-      }
-      .item {
-        display: flex;
-        align-items: center;
-        border-bottom: 1px dashed #ccc;
-        padding: 10px 0;
-        page-break-inside: avoid;
-      }
-      .item-image {
-        flex-shrink: 0;
-        margin-right: 15px;
-        border-radius: 5px;
-        max-width: 80px;
-        height: auto;
-        object-fit: cover;
-      }
-      .item-details {
-        flex-grow: 1;
-      }
-      .item-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-      }
-      .item-name-info {
-        flex-grow: 1;
-        font-weight: bold;
-      }
-      .item-number {
-        font-weight: bold;
-        margin-right: 5px;
-      }
-      .item-name {
-        display: inline;
-      }
-      .item-price {
-        font-weight: bold;
-        color: #e74c3c;
-        flex-shrink: 0;
-        margin-left: 15px;
-      }
-      .item-weight {
-        font-size: 14px;
-        color: #555;
-        margin-top: 5px;
-      }
-      footer {
-        text-align: center;
-        margin-top: 30px;
-        font-size: 12px;
-        color: #777;
-        border-top: 1px solid #ddd;
-        padding-top: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       }
       
-      /* Estilos adicionais para imagens */
+      /* HEADER - LAYOUT CORRIGIDO */
+      .header {
+        background: linear-gradient(135deg, #e67e22, #d35400);
+        color: white;
+        padding: 15px 20px;
+      }
+      
+      .header-top {
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      
+      .header-top h1 {
+        font-size: 18px;
+        font-weight: bold;
+        text-transform: uppercase;
+        line-height: 1.3;
+      }
+      
+      .header-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+      }
+      
+      .categoria-info {
+        flex: 1;
+      }
+      
+      .categoria-title {
+        font-size: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+        text-align: left;
+      }
+      
+      .itens-lista {
+        text-align: left;
+      }
+      
+      .item-header {
+        margin-bottom: 5px;
+        font-size: 14px;
+      }
+      
+      .item-peso {
+        font-size: 13px;
+        color: rgba(255,255,255,0.9);
+        margin-bottom: 8px;
+      }
+      
+      .pix-section {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 8px;
+        min-width: 150px;
+      }
+      
+      .pix-info {
+        text-align: right;
+        font-size: 14px;
+        font-weight: bold;
+      }
+      
+      .preco-info {
+        font-size: 18px;
+        font-weight: bold;
+        background: rgba(255,255,255,0.2);
+        padding: 8px 12px;
+        border-radius: 5px;
+      }
+      
+      .qr-code {
+        width: 100px;
+        height: 100px;
+        background: white;
+        padding: 5px;
+        border-radius: 8px;
+      }
+      
+      .qr-code img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+      
+      /* CATEGORIAS */
+      .category {
+        padding: 20px;
+        border-bottom: 2px solid #e67e22;
+      }
+      
+      .category-title {
+        font-size: 20px;
+        font-weight: bold;
+        color: #e67e22;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        text-align: center;
+        border-bottom: 2px solid #e67e22;
+        padding-bottom: 8px;
+      }
+      
+      /* ITENS */
+      .item {
+        display: flex;
+        align-items: flex-start;
+        padding: 12px 0;
+        border-bottom: 1px dashed #ddd;
+      }
+      
+      .item:last-child {
+        border-bottom: none;
+      }
+      
+      .item-number {
+        font-weight: bold;
+        color: #e67e22;
+        font-size: 16px;
+        min-width: 40px;
+        margin-right: 10px;
+      }
+      
+      .item-content {
+        flex: 1;
+      }
+      
+      .item-name {
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 4px;
+        color: #333;
+      }
+      
+      .item-weight {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 8px;
+      }
+      
+      .item-price {
+        font-weight: bold;
+        color: #27ae60;
+        font-size: 16px;
+      }
+      
       .item-image-container {
+        margin-left: 15px;
         flex-shrink: 0;
-        margin-right: 15px;
+      }
+      
+      .item-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        object-fit: cover;
+        border: 2px solid #e67e22;
       }
       
       .no-image {
         width: 80px;
         height: 80px;
         background: #f0f0f0;
-        border-radius: 5px;
+        border-radius: 8px;
         display: flex;
         align-items: center;
         justify-content: center;
         color: #999;
         font-size: 10px;
         text-align: center;
+        border: 2px dashed #ccc;
       }
       
-      /* Modal para imagem ampliada */
+      /* FOOTER */
+      footer {
+        text-align: center;
+        padding: 20px;
+        background: #f8f8f8;
+        color: #666;
+        font-size: 12px;
+        border-top: 1px solid #ddd;
+      }
+      
+      /* MODAL PARA IMAGENS */
       .modal {
         display: none;
         position: fixed;
@@ -197,7 +241,6 @@
         margin: auto;
         display: block;
         width: 80%;
-        max-width: 700px;
         text-align: center;
         color: #ccc;
         padding: 10px 0;
@@ -217,36 +260,49 @@
         color: #bbb;
       }
       
+      /* RESPONSIVO */
       @media (max-width: 600px) {
-        .header-main-info {
+        .container {
+          margin: 0;
+        }
+        
+        .header-content {
           flex-direction: column;
-          gap: 15px;
           text-align: center;
         }
         
-        .horario-info {
-          flex-direction: column;
-          gap: 10px;
+        .categoria-info {
+          text-align: center;
+        }
+        
+        .categoria-title {
+          text-align: center;
+        }
+        
+        .itens-lista {
+          text-align: center;
+        }
+        
+        .pix-section {
+          align-items: center;
+        }
+        
+        .header-top h1 {
+          font-size: 16px;
         }
         
         .item {
           flex-direction: column;
-          text-align: center;
         }
         
         .item-image-container {
-          margin-right: 0;
-          margin-bottom: 10px;
-        }
-        
-        .item-top {
-          flex-direction: column;
-          align-items: center;
-        }
-        
-        .item-price {
           margin-left: 0;
           margin-top: 10px;
+          align-self: center;
+        }
+        
+        .item-number {
+          align-self: flex-start;
         }
       }
     </style>
@@ -260,35 +316,49 @@
     </div>
     
     <div class="container">
-      <header>
-        <div class="header-bg">
-          <div class="logo-circle">
-            <img src="https://bolachariaelainemara.github.io/mara/IMG/logo_01.png" alt="Logo" onerror="this.style.display='none'; this.parentNode.innerHTML='🍪';">
-          </div>
+      <!-- HEADER CORRIGIDO -->
+      <header class="header">
+        <div class="header-top">
+          <h1>BOM DIA PESSOAL! PEDIDOS ABERTOS PARA ENTREGA - 11/11 (TERÇA)</h1>
         </div>
-        <div class="header-main-info">
-          <h1>Bom dia pessoal! Pedidos abertos para entrega - 11/11 (TERÇA)</h1>
-          <div class="horario-info">
+        
+        <div class="header-content">
+          <div class="categoria-info">
+            <div class="categoria-title">BOLACHA DOCE</div>
+            <div class="itens-lista">
+              <div class="item-header">01 Broa de Milho</div>
+              <div class="item-peso">150 g</div>
+              <div class="item-header">02 Beliscão de Goiabada</div>
+              <div class="item-peso">130 g</div>
+            </div>
+          </div>
+          
+          <div class="pix-section">
             <div class="qr-code">
-              <img src="https://bolachariaelainemara.github.io/mara/IMG/pix_qrcode.png" alt="QR Code para pedidos" onerror="this.style.display='none'; this.parentNode.innerHTML='📱';">
+              <img src="https://bolachariaelainemara.github.io/mara/IMG/pix_qrcode.png" alt="QR Code PIX">
             </div>
-            <div class="horario-text">
-              ⏰ Horário para pedidos: até 12h para entrega a partir das 14h
-            </div>
+            <div class="pix-info">PIX: 76036014104</div>
+            <div class="preco-info">R$ 15,00</div>
           </div>
         </div>
       </header>
       
+      <!-- CONTEÚDO PRINCIPAL -->
       <main>
         
           <section class="category">
             <h2 class="category-title">BOLACHA DOCE</h2>
             
               <div class="item">
+                <div class="item-number">01.01.01</div>
+                <div class="item-content">
+                  <div class="item-name">Broa de Milho</div>
+                  <div class="item-weight">150 g</div>
+                  <div class="item-price">R$ 12,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
                       <img src="https://bolachariaelainemara.github.io/mara/IMG/broa.jpg" 
                            class="item-image" 
                            alt="Broa de Milho" 
@@ -298,23 +368,18 @@
                     
                   
                 </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.01</span>
-                      <span class="item-name">Broa de Milho</span>
-                      <div class="item-weight">150 g</div>
-                    </div>
-                    <div class="item-price">R$ 12,00</div>
-                  </div>
-                </div>
               </div>
             
               <div class="item">
+                <div class="item-number">01.01.02</div>
+                <div class="item-content">
+                  <div class="item-name">Beliscão de Goiabada</div>
+                  <div class="item-weight">130 g</div>
+                  <div class="item-price">R$ 15,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
                       <img src="https://bolachariaelainemara.github.io/mara/IMG/beliscao.jpg" 
                            class="item-image" 
                            alt="Beliscão de Goiabada" 
@@ -324,23 +389,18 @@
                     
                   
                 </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.02</span>
-                      <span class="item-name">Beliscão de Goiabada</span>
-                      <div class="item-weight">130 g</div>
-                    </div>
-                    <div class="item-price">R$ 15,00</div>
-                  </div>
-                </div>
               </div>
             
               <div class="item">
+                <div class="item-number">01.01.03</div>
+                <div class="item-content">
+                  <div class="item-name">Bolacha Recheada de Doce de Leite</div>
+                  <div class="item-weight">130 g</div>
+                  <div class="item-price">R$ 15,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
                       <img src="https://bolachariaelainemara.github.io/mara/IMG/bolachadocedeleite.jpg" 
                            class="item-image" 
                            alt="Bolacha Recheada de Doce de Leite" 
@@ -350,23 +410,18 @@
                     
                   
                 </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.03</span>
-                      <span class="item-name">Bolacha Recheada de Doce de Leite</span>
-                      <div class="item-weight">130 g</div>
-                    </div>
-                    <div class="item-price">R$ 15,00</div>
-                  </div>
-                </div>
               </div>
             
               <div class="item">
+                <div class="item-number">01.01.04</div>
+                <div class="item-content">
+                  <div class="item-name">Bolacha de Nata e Coco</div>
+                  <div class="item-weight">150 g</div>
+                  <div class="item-price">R$ 15,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
                       <img src="https://bolachariaelainemara.github.io/mara/IMG/broa_natacoco.jpg" 
                            class="item-image" 
                            alt="Bolacha de Nata e Coco" 
@@ -376,23 +431,18 @@
                     
                   
                 </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.04</span>
-                      <span class="item-name">Bolacha de Nata e Coco</span>
-                      <div class="item-weight">150 g</div>
-                    </div>
-                    <div class="item-price">R$ 15,00</div>
-                  </div>
-                </div>
               </div>
             
               <div class="item">
+                <div class="item-number">01.01.05</div>
+                <div class="item-content">
+                  <div class="item-name">Bolacha de Castanha de Caju com Canela</div>
+                  
+                  <div class="item-price">R$ 15,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
                       <img src="https://bolachariaelainemara.github.io/mara/IMG/castanha de caju.jpg" 
                            class="item-image" 
                            alt="Bolacha de Castanha de Caju com Canela" 
@@ -402,19 +452,15 @@
                     
                   
                 </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.05</span>
-                      <span class="item-name">Bolacha de Castanha de Caju com Canela</span>
-                      
-                    </div>
-                    <div class="item-price">R$ 15,00</div>
-                  </div>
-                </div>
               </div>
             
               <div class="item">
+                <div class="item-number">01.01.06</div>
+                <div class="item-content">
+                  <div class="item-name">Bolacha Coração de Limão</div>
+                  
+                  <div class="item-price">R$ 15,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     <div class="no-image">
@@ -424,23 +470,18 @@
                     </div>
                   
                 </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.06</span>
-                      <span class="item-name">Bolacha Coração de Limão</span>
-                      
-                    </div>
-                    <div class="item-price">R$ 15,00</div>
-                  </div>
-                </div>
               </div>
             
               <div class="item">
+                <div class="item-number">01.01.07</div>
+                <div class="item-content">
+                  <div class="item-name">Bolacha Craquelada de café</div>
+                  
+                  <div class="item-price">R$ 15,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
                       <img src="https://bolachariaelainemara.github.io/mara/IMG/craquelado_cafe.jpg" 
                            class="item-image" 
                            alt="Bolacha Craquelada de café" 
@@ -450,23 +491,18 @@
                     
                   
                 </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.07</span>
-                      <span class="item-name">Bolacha Craquelada de café</span>
-                      
-                    </div>
-                    <div class="item-price">R$ 15,00</div>
-                  </div>
-                </div>
               </div>
             
               <div class="item">
+                <div class="item-number">01.01.08</div>
+                <div class="item-content">
+                  <div class="item-name">Cookie de Chocolate </div>
+                  <div class="item-weight">2Un</div>
+                  <div class="item-price">R$ 8,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
                       <img src="https://bolachariaelainemara.github.io/mara/IMG/cookie_chocolate.jpg" 
                            class="item-image" 
                            alt="Cookie de Chocolate " 
@@ -476,16 +512,6 @@
                     
                   
                 </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01.01.08</span>
-                      <span class="item-name">Cookie de Chocolate </span>
-                      <div class="item-weight">2Un</div>
-                    </div>
-                    <div class="item-price">R$ 8,00</div>
-                  </div>
-                </div>
               </div>
             
           </section>
@@ -494,10 +520,15 @@
             <h2 class="category-title">BOLACHA SALGADA</h2>
             
               <div class="item">
+                <div class="item-number">02.02.01</div>
+                <div class="item-content">
+                  <div class="item-name">Cracker salgadinho de parmesão e orégano</div>
+                  
+                  <div class="item-price">R$ 15,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
                       <img src="https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg" 
                            class="item-image" 
                            alt="Cracker salgadinho de parmesão e orégano" 
@@ -506,24 +537,19 @@
                            onclick="openModal(this, 'Cracker salgadinho de parmesão e orégano')">
                     
                   
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">02.02.01</span>
-                      <span class="item-name">Cracker salgadinho de parmesão e orégano</span>
-                      
-                    </div>
-                    <div class="item-price">R$ 15,00</div>
-                  </div>
                 </div>
               </div>
             
               <div class="item">
+                <div class="item-number">05.02.01</div>
+                <div class="item-content">
+                  <div class="item-name">Cracker salgadinho de parmesão e orégano</div>
+                  
+                  <div class="item-price">R$ 0,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
                       <img src="https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg" 
                            class="item-image" 
                            alt="Cracker salgadinho de parmesão e orégano" 
@@ -532,16 +558,6 @@
                            onclick="openModal(this, 'Cracker salgadinho de parmesão e orégano')">
                     
                   
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">05.02.01</span>
-                      <span class="item-name">Cracker salgadinho de parmesão e orégano</span>
-                      
-                    </div>
-                    <div class="item-price">R$ 0,00</div>
-                  </div>
                 </div>
               </div>
             
@@ -551,10 +567,15 @@
             <h2 class="category-title">SALGADOS</h2>
             
               <div class="item">
+                <div class="item-number">02.01.01</div>
+                <div class="item-content">
+                  <div class="item-name">Chipa Paraguaia (congelada)</div>
+                  <div class="item-weight">250 g</div>
+                  <div class="item-price">R$ 25,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
                       <img src="https://bolachariaelainemara.github.io/mara/IMG/chipa.jpg" 
                            class="item-image" 
                            alt="Chipa Paraguaia (congelada)" 
@@ -564,23 +585,18 @@
                     
                   
                 </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">02.01.01</span>
-                      <span class="item-name">Chipa Paraguaia (congelada)</span>
-                      <div class="item-weight">250 g</div>
-                    </div>
-                    <div class="item-price">R$ 25,00</div>
-                  </div>
-                </div>
               </div>
             
               <div class="item">
+                <div class="item-number">02.01.02</div>
+                <div class="item-content">
+                  <div class="item-name">Sopa Paraguaia </div>
+                  <div class="item-weight">75 g</div>
+                  <div class="item-price">R$ 6,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
                       <img src="https://bolachariaelainemara.github.io/mara/IMG/sopa75.jpg" 
                            class="item-image" 
                            alt="Sopa Paraguaia " 
@@ -590,23 +606,18 @@
                     
                   
                 </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">02.01.02</span>
-                      <span class="item-name">Sopa Paraguaia </span>
-                      <div class="item-weight">75 g</div>
-                    </div>
-                    <div class="item-price">R$ 6,00</div>
-                  </div>
-                </div>
               </div>
             
               <div class="item">
+                <div class="item-number">02.01.03</div>
+                <div class="item-content">
+                  <div class="item-name">Sopa Paraguaia </div>
+                  <div class="item-weight">100 g</div>
+                  <div class="item-price">R$ 8,00</div>
+                </div>
                 <div class="item-image-container">
                   
                     
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
                       <img src="https://bolachariaelainemara.github.io/mara/IMG/sopa100.jpg" 
                            class="item-image" 
                            alt="Sopa Paraguaia " 
@@ -616,16 +627,6 @@
                     
                   
                 </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">02.01.03</span>
-                      <span class="item-name">Sopa Paraguaia </span>
-                      <div class="item-weight">100 g</div>
-                    </div>
-                    <div class="item-price">R$ 8,00</div>
-                  </div>
-                </div>
               </div>
             
           </section>
@@ -634,7 +635,7 @@
       
       <footer>
         <p>© 2025 Bolacharia Elaine Mara - Todos os direitos reservados</p>
-        <p>Atualizado em 11/11/2025</p>
+        <p>Atualizado em 11/11/2025 às 11:31</p>
       </footer>
     </div>
 
