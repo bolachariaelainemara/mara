@@ -148,10 +148,6 @@
         object-fit: cover;
         border: 3px solid #e67e22;
         cursor: pointer;
-        transition: transform 0.3s ease;
-      }
-      .item-image:hover {
-        transform: scale(1.05);
       }
       .media-buttons {
         display: flex;
@@ -170,13 +166,11 @@
         border-radius: 15px;
         font-size: 12px;
         cursor: pointer;
-        transition: all 0.3s ease;
         font-weight: bold;
       }
       .media-btn:hover {
         background: #e67e22;
         color: white;
-        border-color: #e67e22;
       }
       .media-btn.video-btn {
         background: #3498db;
@@ -185,7 +179,6 @@
       }
       .media-btn.video-btn:hover {
         background: #2980b9;
-        border-color: #2980b9;
       }
       .no-image {
         width: 120px;
@@ -247,121 +240,51 @@
         padding: 20px;
       }
       
-      /* Modal para galeria */
+      /* Modal SIMPLES */
       .modal {
         display: none;
         position: fixed;
-        z-index: 2000;
+        z-index: 1000;
         left: 0;
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,0.9);
+        background: black;
       }
       
       .modal-content {
-        position: relative;
-        margin: auto;
-        display: block;
-        width: 90%;
-        max-width: 700px;
-        max-height: 90vh;
+        position: absolute;
         top: 50%;
-        transform: translateY(-50%);
-        border-radius: 10px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      }
-      
-      .modal-caption {
-        margin: auto;
-        display: block;
-        width: 80%;
-        max-width: 700px;
-        text-align: center;
-        color: #ccc;
-        padding: 15px 0;
-        font-size: 18px;
-        font-weight: bold;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 90%;
+        max-height: 90%;
       }
       
       .close {
         position: absolute;
         top: 15px;
-        right: 35px;
-        color: #f1f1f1;
-        font-size: 40px;
+        right: 25px;
+        color: white;
+        font-size: 35px;
         font-weight: bold;
         cursor: pointer;
-        z-index: 2001;
       }
       
-      .close:hover {
-        color: #bbb;
-      }
-
-      /* Navegação da galeria */
       .gallery-nav {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        background: rgba(0,0,0,0.7);
+        background: rgba(255,255,255,0.3);
         color: white;
         border: none;
-        padding: 20px 25px;
+        padding: 15px;
+        font-size: 20px;
         cursor: pointer;
-        font-size: 28px;
-        border-radius: 50%;
-        transition: all 0.3s ease;
-        z-index: 2001;
       }
       
-      .prev {
-        left: 30px;
-      }
-      
-      .next {
-        right: 30px;
-      }
-      
-      .gallery-nav:hover {
-        background: rgba(230, 126, 34, 0.9);
-        transform: translateY(-50%) scale(1.1);
-      }
-
-      /* Modal para vídeo */
-      .video-modal {
-        display: none;
-        position: fixed;
-        z-index: 2000;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0,0,0,0.9);
-      }
-      
-      .video-modal-content {
-        position: relative;
-        margin: auto;
-        display: block;
-        width: 90%;
-        max-width: 800px;
-        max-height: 90vh;
-        top: 50%;
-        transform: translateY(-50%);
-        border-radius: 10px;
-      }
-      
-      .video-modal-caption {
-        margin: auto;
-        display: block;
-        width: 80%;
-        max-width: 800px;
-        text-align: center;
-        color: #ccc;
-        padding: 15px 0;
-        font-size: 18px;
-      }
+      .prev { left: 10px; }
+      .next { right: 10px; }
       
       @media (max-width: 600px) {
         .header-main-info {
@@ -387,7 +310,6 @@
         .item-image-container {
           margin-right: 0;
           margin-bottom: 10px;
-          align-items: center;
         }
         
         .media-buttons {
@@ -405,43 +327,22 @@
           margin-left: 0;
           margin-top: 10px;
         }
-
-        .gallery-nav {
-          padding: 15px 20px;
-          font-size: 20px;
-        }
-        
-        .prev {
-          left: 15px;
-        }
-        
-        .next {
-          right: 15px;
-        }
-
-        .modal-content {
-          width: 95%;
-        }
       }
     </style>
   </head>
   <body>
-    <!-- Modal para galeria de imagens -->
-    <div id="galleryModal" class="modal">
+    <!-- Modal SIMPLES para galeria -->
+    <div id="myModal" class="modal">
       <span class="close">&times;</span>
-      <button class="gallery-nav prev">❮</button>
-      <button class="gallery-nav next">❯</button>
-      <img class="modal-content" id="galleryImage">
-      <div id="galleryCaption" class="modal-caption"></div>
+      <button class="gallery-nav prev">‹</button>
+      <button class="gallery-nav next">›</button>
+      <img class="modal-content" id="modalImage">
     </div>
 
     <!-- Modal para vídeo -->
-    <div id="videoModal" class="video-modal">
+    <div id="videoModal" class="modal">
       <span class="close">&times;</span>
-      <video class="video-modal-content" id="expandedVideo" controls>
-        Seu navegador não suporta o elemento de vídeo.
-      </video>
-      <div id="videoCaption" class="video-modal-caption"></div>
+      <video class="modal-content" id="modalVideo" controls></video>
     </div>
     
     <div class="container">
@@ -486,7 +387,7 @@
                          alt="Broa de Milho" 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Broa de Milho', ["https://bolachariaelainemara.github.io/mara/IMG/broa.jpg"])">
+                         onclick="showImage('Broa de Milho', ["https://bolachariaelainemara.github.io/mara/IMG/broa.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -516,7 +417,7 @@
                          alt="Beliscão de Goiabada" 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Beliscão de Goiabada', ["https://bolachariaelainemara.github.io/mara/IMG/beliscao.jpg"])">
+                         onclick="showImage('Beliscão de Goiabada', ["https://bolachariaelainemara.github.io/mara/IMG/beliscao.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -546,7 +447,7 @@
                          alt="Bolacha Recheada de Doce de Leite" 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Bolacha Recheada de Doce de Leite', ["https://bolachariaelainemara.github.io/mara/IMG/bolachadocedeleite.jpg"])">
+                         onclick="showImage('Bolacha Recheada de Doce de Leite', ["https://bolachariaelainemara.github.io/mara/IMG/bolachadocedeleite.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -576,7 +477,7 @@
                          alt="Bolacha de Nata e Coco" 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Bolacha de Nata e Coco', ["https://bolachariaelainemara.github.io/mara/IMG/broa_natacoco.jpg"])">
+                         onclick="showImage('Bolacha de Nata e Coco', ["https://bolachariaelainemara.github.io/mara/IMG/broa_natacoco.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -601,12 +502,12 @@
               <div class="item">
                 <div class="item-image-container">
                   
-                    <img src="https://bolachariaelainemara.github.io/mara/IMG/castanha%20de%20caju.jpg" 
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/castanha de caju.jpg" 
                          class="item-image" 
                          alt="Bolacha de Castanha de Caju com Canela" 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Bolacha de Castanha de Caju com Canela', ["https://bolachariaelainemara.github.io/mara/IMG/castanha%20de%20caju.jpg"])">
+                         onclick="showImage('Bolacha de Castanha de Caju com Canela', ["https://bolachariaelainemara.github.io/mara/IMG/castanha de caju.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -665,7 +566,7 @@
                          alt="Bolacha Craquelada de café" 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Bolacha Craquelada de café', ["https://bolachariaelainemara.github.io/mara/IMG/craquelado_cafe.jpg"])">
+                         onclick="showImage('Bolacha Craquelada de café', ["https://bolachariaelainemara.github.io/mara/IMG/craquelado_cafe.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -695,7 +596,7 @@
                          alt="Cookie de Chocolate " 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Cookie de Chocolate ', ["https://bolachariaelainemara.github.io/mara/IMG/cookie_chocolate.jpg"])">
+                         onclick="showImage('Cookie de Chocolate ', ["https://bolachariaelainemara.github.io/mara/IMG/cookie_chocolate.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -730,13 +631,13 @@
                          alt="Cracker salgadinho de parmesão e orégano" 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Cracker salgadinho de parmesão e orégano', ["https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg","https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg"])">
+                         onclick="showImage('Cracker salgadinho de parmesão e orégano', ["https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg","https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg"])">
                   
                   
                   <div class="media-buttons">
                     
-                      <button class="media-btn" onclick="openGallery('Cracker salgadinho de parmesão e orégano', ["https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg","https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg"])">
-                        📸 Ver mais fotos (2)
+                      <button class="media-btn" onclick="showImage('Cracker salgadinho de parmesão e orégano', ["https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg","https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg"])">
+                        📸 Mais fotos (2)
                       </button>
                     
                     
@@ -764,13 +665,13 @@
                          alt="Cracker salgadinho de parmesão e orégano" 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Cracker salgadinho de parmesão e orégano', ["https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg","https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg"])">
+                         onclick="showImage('Cracker salgadinho de parmesão e orégano', ["https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg","https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg"])">
                   
                   
                   <div class="media-buttons">
                     
-                      <button class="media-btn" onclick="openGallery('Cracker salgadinho de parmesão e orégano', ["https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg","https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg"])">
-                        📸 Ver mais fotos (2)
+                      <button class="media-btn" onclick="showImage('Cracker salgadinho de parmesão e orégano', ["https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão_2.jpg","https://bolachariaelainemara.github.io/mara/IMG/Cracker_parmesão.jpg"])">
+                        📸 Mais fotos (2)
                       </button>
                     
                     
@@ -803,7 +704,7 @@
                          alt="Chipa Paraguaia (congelada)" 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Chipa Paraguaia (congelada)', ["https://bolachariaelainemara.github.io/mara/IMG/chipa.jpg"])">
+                         onclick="showImage('Chipa Paraguaia (congelada)', ["https://bolachariaelainemara.github.io/mara/IMG/chipa.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -833,7 +734,7 @@
                          alt="Sopa Paraguaia " 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Sopa Paraguaia ', ["https://bolachariaelainemara.github.io/mara/IMG/sopa75.jpg"])">
+                         onclick="showImage('Sopa Paraguaia ', ["https://bolachariaelainemara.github.io/mara/IMG/sopa75.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -863,7 +764,7 @@
                          alt="Sopa Paraguaia " 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Sopa Paraguaia ', ["https://bolachariaelainemara.github.io/mara/IMG/sopa100.jpg"])">
+                         onclick="showImage('Sopa Paraguaia ', ["https://bolachariaelainemara.github.io/mara/IMG/sopa100.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -896,148 +797,88 @@
     </div>
 
     <script>
-      // Variáveis globais para a galeria
-      let currentGallery = {
-        images: [],
-        currentIndex: 0,
-        title: ''
-      };
-
-      // Abre a galeria de imagens
-      function openGallery(title, images) {
-        console.log('Abrindo galeria:', title, images);
+      // Sistema SIMPLES de galeria
+      let currentImages = [];
+      let currentIndex = 0;
+      
+      function showImage(title, images) {
+        if (!images || images.length === 0) return;
         
-        if (!images || images.length === 0) {
-          alert('Nenhuma imagem disponível para este produto.');
-          return;
-        }
+        currentImages = images;
+        currentIndex = 0;
         
-        currentGallery.images = images;
-        currentGallery.currentIndex = 0;
-        currentGallery.title = title;
-        
-        const modal = document.getElementById('galleryModal');
-        const modalImg = document.getElementById('galleryImage');
-        const captionText = document.getElementById('galleryCaption');
-        const prevBtn = document.querySelector('.gallery-nav.prev');
-        const nextBtn = document.querySelector('.gallery-nav.next');
+        const modal = document.getElementById('myModal');
+        const modalImg = document.getElementById('modalImage');
         
         modal.style.display = 'block';
         modalImg.src = images[0];
         modalImg.alt = title;
-        captionText.innerHTML = `${title} (1/${images.length})`;
         
-        // Mostra/oculta botões de navegação baseado no número de imagens
-        if (images.length > 1) {
-          prevBtn.style.display = 'block';
-          nextBtn.style.display = 'block';
-        } else {
-          prevBtn.style.display = 'none';
-          nextBtn.style.display = 'none';
-        }
+        // Mostra navegação apenas se tiver mais de uma imagem
+        document.querySelector('.prev').style.display = images.length > 1 ? 'block' : 'none';
+        document.querySelector('.next').style.display = images.length > 1 ? 'block' : 'none';
       }
-
-      // Navega entre as imagens da galeria
-      function changeImage(direction) {
-        if (currentGallery.images.length <= 1) return;
-        
-        currentGallery.currentIndex += direction;
-        
-        // Loop circular
-        if (currentGallery.currentIndex >= currentGallery.images.length) {
-          currentGallery.currentIndex = 0;
-        } else if (currentGallery.currentIndex < 0) {
-          currentGallery.currentIndex = currentGallery.images.length - 1;
-        }
-        
-        const modalImg = document.getElementById('galleryImage');
-        const captionText = document.getElementById('galleryCaption');
-        
-        modalImg.src = currentGallery.images[currentGallery.currentIndex];
-        captionText.innerHTML = `${currentGallery.title} (${currentGallery.currentIndex + 1}/${currentGallery.images.length})`;
+      
+      function nextImage() {
+        if (currentImages.length <= 1) return;
+        currentIndex = (currentIndex + 1) % currentImages.length;
+        document.getElementById('modalImage').src = currentImages[currentIndex];
       }
-
-      // Abre modal de vídeo
-      function openVideoModal(videoUrl, caption) {
+      
+      function prevImage() {
+        if (currentImages.length <= 1) return;
+        currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+        document.getElementById('modalImage').src = currentImages[currentIndex];
+      }
+      
+      function showVideo(videoUrl) {
         const modal = document.getElementById('videoModal');
-        const modalVideo = document.getElementById('expandedVideo');
-        const captionText = document.getElementById('videoCaption');
+        const modalVideo = document.getElementById('modalVideo');
         
         modal.style.display = 'block';
         modalVideo.src = videoUrl;
-        captionText.innerHTML = caption;
         modalVideo.load();
-        modalVideo.play().catch(e => console.log('Autoplay bloqueado:', e));
       }
       
-      // Fecha todos os modais
       function closeModal() {
-        const galleryModal = document.getElementById('galleryModal');
-        const videoModal = document.getElementById('videoModal');
-        const videoElement = document.getElementById('expandedVideo');
+        document.getElementById('myModal').style.display = 'none';
+        document.getElementById('videoModal').style.display = 'none';
         
-        galleryModal.style.display = 'none';
-        videoModal.style.display = 'none';
-        if (videoElement) {
-          videoElement.pause();
-          videoElement.src = '';
+        const video = document.getElementById('modalVideo');
+        if (video) {
+          video.pause();
+          video.src = '';
         }
       }
       
-      // Event Listeners quando a página carrega
+      // Event listeners SIMPLES
       document.addEventListener('DOMContentLoaded', function() {
-        const galleryModal = document.getElementById('galleryModal');
-        const videoModal = document.getElementById('videoModal');
-        const closeBtns = document.querySelectorAll('.close');
-        const prevBtn = document.querySelector('.gallery-nav.prev');
-        const nextBtn = document.querySelector('.gallery-nav.next');
-        
-        // Configura botões de navegação da galeria
-        if (prevBtn) {
-          prevBtn.addEventListener('click', function() {
-            changeImage(-1);
-          });
-        }
-        
-        if (nextBtn) {
-          nextBtn.addEventListener('click', function() {
-            changeImage(1);
-          });
-        }
-        
-        // Fecha modal ao clicar no X
-        closeBtns.forEach(btn => {
-          btn.addEventListener('click', closeModal);
+        // Fechar modais
+        document.querySelectorAll('.close').forEach(btn => {
+          btn.onclick = closeModal;
         });
         
-        // Fecha modal ao clicar fora do conteúdo
-        galleryModal.addEventListener('click', function(event) {
-          if (event.target === galleryModal) {
-            closeModal();
-          }
-        });
+        // Navegação
+        document.querySelector('.next').onclick = nextImage;
+        document.querySelector('.prev').onclick = prevImage;
         
-        videoModal.addEventListener('click', function(event) {
-          if (event.target === videoModal) {
-            closeModal();
-          }
-        });
+        // Fechar ao clicar fora
+        document.getElementById('myModal').onclick = function(e) {
+          if (e.target === this) closeModal();
+        };
         
-        // Fecha modal com tecla ESC
-        document.addEventListener('keydown', function(event) {
-          if (event.key === 'Escape') {
-            closeModal();
+        document.getElementById('videoModal').onclick = function(e) {
+          if (e.target === this) closeModal();
+        };
+        
+        // Teclado
+        document.onkeydown = function(e) {
+          if (document.getElementById('myModal').style.display === 'block') {
+            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage();
           }
-          
-          // Navegação por teclado na galeria
-          if (galleryModal.style.display === 'block') {
-            if (event.key === 'ArrowLeft') {
-              changeImage(-1);
-            } else if (event.key === 'ArrowRight') {
-              changeImage(1);
-            }
-          }
-        });
+          if (e.key === 'Escape') closeModal();
+        };
       });
     </script>
   </body>
