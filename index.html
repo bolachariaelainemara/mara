@@ -164,8 +164,8 @@
         display: flex;
         align-items: center;
         background: white;
-        margin-bottom: 20px;
-        padding: 20px;
+        margin-bottom: 15px;
+        padding: 15px;
         border-radius: 12px;
         box-shadow: 0 3px 10px rgba(0,0,0,0.1);
         border: 2px solid transparent;
@@ -202,8 +202,8 @@
       
       .item-image {
         border-radius: 10px;
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
         object-fit: cover;
         border: 3px solid #2d8c3d;
         box-shadow: 0 3px 8px rgba(0,0,0,0.2);
@@ -216,18 +216,6 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.3);
       }
       
-      .gallery-indicator {
-        position: absolute;
-        bottom: 5px;
-        right: 5px;
-        background: rgba(199, 30, 58, 0.9);
-        color: white;
-        padding: 2px 6px;
-        border-radius: 10px;
-        font-size: 10px;
-        font-weight: bold;
-      }
-      
       .item-details {
         flex-grow: 1;
       }
@@ -236,7 +224,7 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
-        margin-bottom: 10px;
+        margin-bottom: 8px;
       }
       
       .item-name-info {
@@ -256,38 +244,38 @@
       .item-name {
         font-weight: bold;
         color: #2d8c3d;
-        font-size: 18px;
+        font-size: 16px;
       }
       
       .item-price {
         background: linear-gradient(135deg, #c41e3a, #e74c3c);
         color: white;
-        padding: 10px 20px;
+        padding: 8px 15px;
         border-radius: 25px;
         font-weight: bold;
-        font-size: 18px;
+        font-size: 16px;
         box-shadow: 0 3px 8px rgba(199, 30, 58, 0.3);
-        min-width: 90px;
+        min-width: 80px;
         text-align: center;
       }
       
       .item-weight {
-        font-size: 15px;
+        font-size: 14px;
         color: #666;
         font-style: italic;
         margin-top: 5px;
       }
       
       .item-descricao {
-        font-size: 14px;
+        font-size: 13px;
         color: #888;
-        margin-top: 8px;
+        margin-top: 5px;
         line-height: 1.4;
       }
       
       .no-image {
-        width: 150px;
-        height: 150px;
+        width: 120px;
+        height: 120px;
         background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
         border: 3px solid #2d8c3d;
         border-radius: 10px;
@@ -299,10 +287,9 @@
         text-align: center;
         padding: 10px;
         box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-        cursor: pointer;
       }
       
-      /* Modal para galeria de fotos - SEM DEFORMAR */
+      /* Modal para imagem ampliada */
       .modal {
         display: none;
         position: fixed;
@@ -311,42 +298,33 @@
         top: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,0.95);
+        background-color: rgba(0,0,0,0.9);
         animation: fadeIn 0.3s ease;
       }
       
-      .modal-content-container {
+      .modal-content {
         position: relative;
         margin: auto;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 95%;
-        height: 85vh;
+        display: block;
+        width: 90%;
+        max-width: 700px;
+        max-height: 90vh;
         top: 50%;
         transform: translateY(-50%);
-        animation: zoomIn 0.3s ease;
-      }
-      
-      .modal-content {
-        max-width: 90%;
-        max-height: 90%;
-        width: auto;
-        height: auto;
         border-radius: 10px;
         box-shadow: 0 0 30px rgba(255,255,255,0.2);
-        object-fit: contain;
+        animation: zoomIn 0.3s ease;
       }
       
       .modal-caption {
         margin: auto;
         display: block;
         width: 80%;
-        max-width: 800px;
+        max-width: 700px;
         text-align: center;
         color: #ccc;
-        padding: 15px 0;
-        font-size: 18px;
+        padding: 10px 0;
+        font-size: 16px;
         background: rgba(0,0,0,0.8);
         border-radius: 0 0 10px 10px;
         position: relative;
@@ -355,7 +333,7 @@
       
       .close {
         position: absolute;
-        top: 20px;
+        top: 15px;
         right: 35px;
         color: #f1f1f1;
         font-size: 40px;
@@ -390,7 +368,6 @@
         cursor: pointer;
         border-radius: 50%;
         transition: all 0.3s ease;
-        z-index: 2002;
       }
       
       .modal-nav:hover {
@@ -404,35 +381,6 @@
       
       .modal-next {
         right: 20px;
-      }
-      
-      /* Miniaturas na galeria */
-      .gallery-thumbnails {
-        display: flex;
-        justify-content: center;
-        gap: 10px;
-        margin-top: 20px;
-        padding: 0 20px;
-        flex-wrap: wrap;
-      }
-      
-      .thumbnail {
-        width: 60px;
-        height: 60px;
-        object-fit: contain;
-        border-radius: 5px;
-        cursor: pointer;
-        opacity: 0.6;
-        transition: all 0.3s ease;
-        border: 2px solid transparent;
-        background: rgba(255,255,255,0.1);
-        padding: 2px;
-      }
-      
-      .thumbnail:hover, .thumbnail.active {
-        opacity: 1;
-        border-color: #c41e3a;
-        transform: scale(1.1);
       }
       
       @keyframes fadeIn {
@@ -516,18 +464,12 @@
         }
         
         .item-image, .no-image {
-          width: 200px;
-          height: 200px;
-        }
-        
-        .modal-content-container {
-          width: 98%;
-          height: 80vh;
+          width: 140px;
+          height: 140px;
         }
         
         .modal-content {
-          max-width: 95%;
-          max-height: 95%;
+          width: 95%;
         }
         
         .modal-nav {
@@ -550,15 +492,6 @@
           width: 40px;
           height: 40px;
         }
-        
-        .gallery-thumbnails {
-          flex-wrap: wrap;
-        }
-        
-        .thumbnail {
-          width: 50px;
-          height: 50px;
-        }
       }
     </style>
   </head>
@@ -566,110 +499,36 @@
     <!-- Neve animada -->
     <div id="snow"></div>
     
-    <!-- Modal para galeria de fotos -->
-    <div id="galleryModal" class="modal">
+    <!-- Modal para imagem ampliada -->
+    <div id="imageModal" class="modal">
       <span class="close">&times;</span>
       <button class="modal-nav modal-prev">❮</button>
       <button class="modal-nav modal-next">❯</button>
-      <div class="modal-content-container">
-        <img class="modal-content" id="expandedImg">
-      </div>
+      <img class="modal-content" id="expandedImg">
       <div id="imageCaption" class="modal-caption"></div>
-      <div class="gallery-thumbnails" id="galleryThumbnails"></div>
     </div>
     
     <div class="container">
       <header>
         <div class="header-bg">
           <div class="logo-circle">
-            <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/logo_01.png" alt="Logo Natalino" onerror="this.style.display='none'; this.parentNode.innerHTML='🎄';">
+            <img src="https://bolachariaelainemara.github.io/mara/IMG/logo_01.png" alt="Logo Natalino" onerror="this.style.display='none'; this.parentNode.innerHTML='🎄';">
           </div>
         </div>
         <div class="header-main-info">
           <h1>🎄 Feliz Natal! Pedidos especiais para as festas</h1>
           <div class="horario-info">
             <div class="qr-code">
-              <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/pix_qrcode.png" alt="QR Code para pedidos" onerror="this.style.display='none'; this.parentNode.innerHTML='📱';">
+              <img src="https://bolachariaelainemara.github.io/natal/IMG/pix_qrcode.png" alt="QR Code para pedidos" onerror="this.style.display='none'; this.parentNode.innerHTML='📱';">
             </div>
             <div class="horario-text">
-              🎁 COLEÇÃO DE NATAL
+              🎁 COLEÇÃO DE NATAL 
             </div>
           </div>
         </div>
       </header>
       
       <main>
-        
-          <section class="category">
-            <h2 class="category-title">BOLACHA NATAL</h2>
-            
-              <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/01_00.jpg" 
-                           class="item-image" 
-                           alt="Marcador de livro" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openGallery(this, 'Marcador de livro', [
-                             '01_00.jpg',
-                             '01_01.jpg',
-                             '01_01.jpg',
-                             '01_00.jpg'
-                           ])">
-                    
-                    <div class="gallery-indicator">+3</div>
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">01</span>
-                      <span class="item-name">Marcador de livro</span>
-                      <div class="item-weight">3 Bolachas</div>
-                    </div>
-                    <div class="item-price">R$ 7,00</div>
-                  </div>
-                  <div class="item-descricao">3 Bolachas saborosas</div>
-                </div>
-              </div>
-            
-              <div class="item">
-                <div class="item-image-container">
-                  
-                    
-                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/02_00.jpg" 
-                           class="item-image" 
-                           alt="Cartão postal" 
-                           loading="lazy"
-                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openGallery(this, 'Cartão postal', [
-                             '02_00.jpg',
-                             '02_01.jpg',
-                             '02_03.jpg',
-                             '02_04.jpg'
-                           ])">
-                    
-                    <div class="gallery-indicator">+3</div>
-                  
-                </div>
-                <div class="item-details">
-                  <div class="item-top">
-                    <div class="item-name-info">
-                      <span class="item-number">02</span>
-                      <span class="item-name">Cartão postal</span>
-                      <div class="item-weight">2 Bolachas Boneco de Gengibre Mix de mini bolachas</div>
-                    </div>
-                    <div class="item-price">R$ 15,00</div>
-                  </div>
-                  <div class="item-descricao">2 Bolachas Boneco de Gengibre Mix de mini bolachas</div>
-                </div>
-              </div>
-            
-          </section>
         
           <section class="category">
             <h2 class="category-title">BOLACHA DOCE</h2>
@@ -679,18 +538,39 @@
                   
                     
                       <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/natal2.jpg" 
+                      <img src="https://bolachariaelainemara.github.io/IMG/NATAL.JPG" 
+                           class="item-image" 
+                           alt="Broa de Milho" 
+                           loading="lazy"
+                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
+                           onclick="openModal(this, 'Broa de Milho')">
+                    
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">01.01.01</span>
+                      <span class="item-name">Broa de Milho</span>
+                      <div class="item-weight">caixa surpresa com biscoitos selecionados prontas para entrega </div>
+                      
+                    </div>
+                    <div class="item-price">R$ 12,00</div>
+                  </div>
+                </div>
+              </div>
+            
+              <div class="item">
+                <div class="item-image-container">
+                  
+                    
+                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
+                      <img src="https://bolachariaelainemara.github.io/IMG/natal2.jpg" 
                            class="item-image" 
                            alt="TESTANDO" 
                            loading="lazy"
                            onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openGallery(this, 'TESTANDO', [
-                             'natal2.jpg',
-                             '',
-                             '',
-                             ''
-                           ])">
-                    
+                           onclick="openModal(this, 'TESTANDO')">
                     
                   
                 </div>
@@ -700,10 +580,42 @@
                       <span class="item-number">01</span>
                       <span class="item-name">TESTANDO</span>
                       <div class="item-weight">UMA MAO</div>
+                      
                     </div>
                     <div class="item-price">R$ 0,00</div>
                   </div>
+                </div>
+              </div>
+            
+          </section>
+        
+          <section class="category">
+            <h2 class="category-title">#N/A</h2>
+            
+              <div class="item">
+                <div class="item-image-container">
                   
+                    
+                      <!-- Se for apenas nome do arquivo, adiciona a URL base -->
+                      <img src="https://bolachariaelainemara.github.io/IMG/Marcador-de-livro3uni.jpg" 
+                           class="item-image" 
+                           alt="#N/A" 
+                           loading="lazy"
+                           onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
+                           onclick="openModal(this, '#N/A')">
+                    
+                  
+                </div>
+                <div class="item-details">
+                  <div class="item-top">
+                    <div class="item-name-info">
+                      <span class="item-number">01</span>
+                      <span class="item-name">#N/A</span>
+                      <div class="item-weight">#N/A</div>
+                      
+                    </div>
+                    <div class="item-price">R$ 5,50</div>
+                  </div>
                 </div>
               </div>
             
@@ -717,18 +629,12 @@
                   
                     
                       <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/natal2.jpg" 
+                      <img src="https://bolachariaelainemara.github.io/IMG/natal2.jpg" 
                            class="item-image" 
                            alt="ESTE É UMA VERIFICAÇÃO" 
                            loading="lazy"
                            onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openGallery(this, 'ESTE É UMA VERIFICAÇÃO', [
-                             'natal2.jpg',
-                             '',
-                             '',
-                             ''
-                           ])">
-                    
+                           onclick="openModal(this, 'ESTE É UMA VERIFICAÇÃO')">
                     
                   
                 </div>
@@ -738,10 +644,10 @@
                       <span class="item-number">02</span>
                       <span class="item-name">ESTE É UMA VERIFICAÇÃO</span>
                       <div class="item-weight">VER QUAL EP</div>
+                      
                     </div>
                     <div class="item-price">R$ 5,80</div>
                   </div>
-                  
                 </div>
               </div>
             
@@ -750,18 +656,12 @@
                   
                     
                       <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/natal2.jpg" 
+                      <img src="https://bolachariaelainemara.github.io/IMG/natal2.jpg" 
                            class="item-image" 
                            alt="GEEEDGDFGD" 
                            loading="lazy"
                            onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openGallery(this, 'GEEEDGDFGD', [
-                             'natal2.jpg',
-                             '',
-                             '',
-                             ''
-                           ])">
-                    
+                           onclick="openModal(this, 'GEEEDGDFGD')">
                     
                   
                 </div>
@@ -771,10 +671,10 @@
                       <span class="item-number">03</span>
                       <span class="item-name">GEEEDGDFGD</span>
                       <div class="item-weight">GDGDGFDGF</div>
+                      
                     </div>
                     <div class="item-price">R$ 5,80</div>
                   </div>
-                  
                 </div>
               </div>
             
@@ -783,18 +683,12 @@
                   
                     
                       <!-- Se for apenas nome do arquivo, adiciona a URL base -->
-                      <img src="https://bolachariaelainemara.github.io/mara/IMG_NATAL/NATAL.JPG" 
+                      <img src="https://bolachariaelainemara.github.io/IMG/NATAL.JPG" 
                            class="item-image" 
                            alt="GEEEDGDFGD" 
                            loading="lazy"
                            onerror="this.style.display='none'; this.parentNode.innerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Não Disponível</div>';"
-                           onclick="openGallery(this, 'GEEEDGDFGD', [
-                             'NATAL.JPG',
-                             '',
-                             '',
-                             ''
-                           ])">
-                    
+                           onclick="openModal(this, 'GEEEDGDFGD')">
                     
                   
                 </div>
@@ -804,10 +698,10 @@
                       <span class="item-number">04</span>
                       <span class="item-name">GEEEDGDFGD</span>
                       <div class="item-weight">GDGDGFDGF</div>
+                      
                     </div>
                     <div class="item-price">R$ 5,80</div>
                   </div>
-                  
                 </div>
               </div>
             
@@ -825,7 +719,7 @@
           </div>
           <p style="margin: 0; font-weight: bold;">🎅 Feliz Natal e Próspero Ano Novo! 🎄</p>
           <p style="margin: 10px 0 0 0; font-size: 12px; opacity: 0.8;">
-            Atualizado em 29/10/2025 • Que suas festas sejam iluminadas! ✨
+            Atualizado em 11/11/2025 • Que suas festas sejam iluminadas! ✨
           </p>
         </div>
       </footer>
@@ -872,123 +766,73 @@
         document.head.appendChild(style);
       }
       
-      // Sistema de galeria para múltiplas fotos - SEM DEFORMAR
-      let currentGalleryIndex = 0;
-      let currentGalleryImages = [];
-      let currentGalleryName = '';
+      // Sistema de modal para imagens ampliadas
+      let currentImageIndex = 0;
+      let allImages = [];
       
-      function openGallery(element, itemName, imageUrls) {
-        // Filtra apenas URLs válidas
-        currentGalleryImages = imageUrls.filter(url => url && url.trim() !== '');
-        currentGalleryName = itemName;
-        currentGalleryIndex = 0;
+      function openModal(element, caption) {
+        // Coleta todas as imagens da página
+        allImages = Array.from(document.querySelectorAll('.item-image'));
+        currentImageIndex = allImages.indexOf(element);
         
-        if (currentGalleryImages.length === 0) {
-          alert('Nenhuma imagem disponível para este item.');
-          return;
-        }
-        
-        const modal = document.getElementById('galleryModal');
+        const modal = document.getElementById('imageModal');
         const modalImg = document.getElementById('expandedImg');
         const captionText = document.getElementById('imageCaption');
-        const thumbnailsContainer = document.getElementById('galleryThumbnails');
-        
-        // Limpa miniaturas anteriores
-        thumbnailsContainer.innerHTML = '';
-        
-        // Carrega a primeira imagem
-        loadGalleryImage(0, modalImg, captionText);
-        
-        // Cria miniaturas
-        currentGalleryImages.forEach((url, index) => {
-          const thumbnail = document.createElement('img');
-          thumbnail.className = 'thumbnail' + (index === 0 ? ' active' : '');
-          thumbnail.src = url.startsWith('http') ? url : 'https://bolachariaelainemara.github.io/mara/IMG_NATAL/' + url;
-          thumbnail.alt = `${itemName} - Foto ${index + 1}`;
-          thumbnail.onclick = () => {
-            currentGalleryIndex = index;
-            loadGalleryImage(index, modalImg, captionText);
-            updateThumbnails();
-          };
-          thumbnail.onerror = () => {
-            thumbnail.style.display = 'none';
-          };
-          thumbnailsContainer.appendChild(thumbnail);
-        });
         
         modal.style.display = 'block';
+        modalImg.src = element.src;
+        captionText.innerHTML = caption;
+        
+        // Previne scroll do body quando modal está aberto
         document.body.style.overflow = 'hidden';
       }
       
-      function loadGalleryImage(index, modalImg, captionText) {
-        const url = currentGalleryImages[index];
-        const fullUrl = url.startsWith('http') ? url : 'https://bolachariaelainemara.github.io/mara/IMG_NATAL/' + url;
-        
-        // Cria uma nova imagem para pré-carregar
-        const img = new Image();
-        img.onload = function() {
-          modalImg.src = fullUrl;
-          modalImg.alt = `${currentGalleryName} - Foto ${index + 1}`;
-          captionText.innerHTML = `${currentGalleryName} - Foto ${index + 1} de ${currentGalleryImages.length}`;
-        };
-        img.onerror = function() {
-          modalImg.alt = 'Imagem não disponível';
-          captionText.innerHTML = `${currentGalleryName} - Foto ${index + 1} (Não disponível)`;
-        };
-        img.src = fullUrl;
-        
-        updateThumbnails();
-      }
-      
-      function updateThumbnails() {
-        const thumbnails = document.querySelectorAll('.thumbnail');
-        thumbnails.forEach((thumb, index) => {
-          thumb.classList.toggle('active', index === currentGalleryIndex);
-        });
-      }
-      
-      function navigateGallery(direction) {
-        if (currentGalleryImages.length === 0) return;
-        
-        currentGalleryIndex += direction;
-        
-        if (currentGalleryIndex >= currentGalleryImages.length) {
-          currentGalleryIndex = 0;
-        } else if (currentGalleryIndex < 0) {
-          currentGalleryIndex = currentGalleryImages.length - 1;
-        }
-        
-        const modalImg = document.getElementById('expandedImg');
-        const captionText = document.getElementById('imageCaption');
-        loadGalleryImage(currentGalleryIndex, modalImg, captionText);
-      }
-      
-      function closeGallery() {
-        const modal = document.getElementById('galleryModal');
+      function closeModal() {
+        const modal = document.getElementById('imageModal');
         modal.style.display = 'none';
         document.body.style.overflow = 'auto';
+      }
+      
+      function navigateImage(direction) {
+        if (allImages.length === 0) return;
+        
+        currentImageIndex += direction;
+        
+        // Loop através das imagens
+        if (currentImageIndex >= allImages.length) {
+          currentImageIndex = 0;
+        } else if (currentImageIndex < 0) {
+          currentImageIndex = allImages.length - 1;
+        }
+        
+        const nextImage = allImages[currentImageIndex];
+        const modalImg = document.getElementById('expandedImg');
+        const captionText = document.getElementById('imageCaption');
+        
+        modalImg.src = nextImage.src;
+        captionText.innerHTML = nextImage.alt;
       }
       
       // Event Listeners
       document.addEventListener('DOMContentLoaded', function() {
         createSnow();
         
-        const modal = document.getElementById('galleryModal');
+        const modal = document.getElementById('imageModal');
         const closeBtn = document.querySelector('.close');
         const prevBtn = document.querySelector('.modal-prev');
         const nextBtn = document.querySelector('.modal-next');
         
         // Fecha modal ao clicar no X
-        closeBtn.onclick = closeGallery;
+        closeBtn.onclick = closeModal;
         
         // Navegação entre imagens
-        prevBtn.onclick = () => navigateGallery(-1);
-        nextBtn.onclick = () => navigateGallery(1);
+        prevBtn.onclick = () => navigateImage(-1);
+        nextBtn.onclick = () => navigateImage(1);
         
         // Fecha modal ao clicar fora da imagem
         modal.onclick = function(event) {
           if (event.target === modal) {
-            closeGallery();
+            closeModal();
           }
         }
         
@@ -996,11 +840,11 @@
         document.addEventListener('keydown', function(event) {
           if (modal.style.display === 'block') {
             if (event.key === 'Escape') {
-              closeGallery();
+              closeModal();
             } else if (event.key === 'ArrowLeft') {
-              navigateGallery(-1);
+              navigateImage(-1);
             } else if (event.key === 'ArrowRight') {
-              navigateGallery(1);
+              navigateImage(1);
             }
           }
         });
