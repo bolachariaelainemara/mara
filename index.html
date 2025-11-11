@@ -601,12 +601,12 @@
               <div class="item">
                 <div class="item-image-container">
                   
-                    <img src="https://bolachariaelainemara.github.io/mara/IMG/castanha de caju.jpg" 
+                    <img src="https://bolachariaelainemara.github.io/mara/IMG/castanha%20de%20caju.jpg" 
                          class="item-image" 
                          alt="Bolacha de Castanha de Caju com Canela" 
                          loading="lazy"
                          onerror="this.style.display='none'; this.outerHTML='<div class=\'no-image\'>📷<br>Imagem<br>Principal</div>';"
-                         onclick="openGallery('Bolacha de Castanha de Caju com Canela', ["https://bolachariaelainemara.github.io/mara/IMG/castanha de caju.jpg"])">
+                         onclick="openGallery('Bolacha de Castanha de Caju com Canela', ["https://bolachariaelainemara.github.io/mara/IMG/castanha%20de%20caju.jpg"])">
                   
                   
                   <div class="media-buttons">
@@ -908,7 +908,7 @@
         console.log('Abrindo galeria:', title, images);
         
         if (!images || images.length === 0) {
-          console.log('Nenhuma imagem disponível');
+          alert('Nenhuma imagem disponível para este produto.');
           return;
         }
         
@@ -919,11 +919,12 @@
         const modal = document.getElementById('galleryModal');
         const modalImg = document.getElementById('galleryImage');
         const captionText = document.getElementById('galleryCaption');
-        const prevBtn = document.querySelector('.prev');
-        const nextBtn = document.querySelector('.next');
+        const prevBtn = document.querySelector('.gallery-nav.prev');
+        const nextBtn = document.querySelector('.gallery-nav.next');
         
         modal.style.display = 'block';
         modalImg.src = images[0];
+        modalImg.alt = title;
         captionText.innerHTML = `${title} (1/${images.length})`;
         
         // Mostra/oculta botões de navegação baseado no número de imagens
@@ -938,6 +939,8 @@
 
       // Navega entre as imagens da galeria
       function changeImage(direction) {
+        if (currentGallery.images.length <= 1) return;
+        
         currentGallery.currentIndex += direction;
         
         // Loop circular
@@ -952,8 +955,6 @@
         
         modalImg.src = currentGallery.images[currentGallery.currentIndex];
         captionText.innerHTML = `${currentGallery.title} (${currentGallery.currentIndex + 1}/${currentGallery.images.length})`;
-        
-        console.log('Mudando para imagem:', currentGallery.currentIndex, currentGallery.images[currentGallery.currentIndex]);
       }
 
       // Abre modal de vídeo
@@ -966,6 +967,7 @@
         modalVideo.src = videoUrl;
         captionText.innerHTML = caption;
         modalVideo.load();
+        modalVideo.play().catch(e => console.log('Autoplay bloqueado:', e));
       }
       
       // Fecha todos os modais
@@ -982,50 +984,52 @@
         }
       }
       
-      // Event Listeners
+      // Event Listeners quando a página carrega
       document.addEventListener('DOMContentLoaded', function() {
         const galleryModal = document.getElementById('galleryModal');
         const videoModal = document.getElementById('videoModal');
         const closeBtns = document.querySelectorAll('.close');
-        const prevBtn = document.querySelector('.prev');
-        const nextBtn = document.querySelector('.next');
+        const prevBtn = document.querySelector('.gallery-nav.prev');
+        const nextBtn = document.querySelector('.gallery-nav.next');
         
-        // Configura botões de navegação
+        // Configura botões de navegação da galeria
         if (prevBtn) {
-          prevBtn.onclick = function() { changeImage(-1); };
+          prevBtn.addEventListener('click', function() {
+            changeImage(-1);
+          });
         }
+        
         if (nextBtn) {
-          nextBtn.onclick = function() { changeImage(1); };
+          nextBtn.addEventListener('click', function() {
+            changeImage(1);
+          });
         }
         
         // Fecha modal ao clicar no X
         closeBtns.forEach(btn => {
-          btn.onclick = closeModal;
+          btn.addEventListener('click', closeModal);
         });
         
         // Fecha modal ao clicar fora do conteúdo
-        galleryModal.onclick = function(event) {
+        galleryModal.addEventListener('click', function(event) {
           if (event.target === galleryModal) {
             closeModal();
           }
-        }
+        });
         
-        videoModal.onclick = function(event) {
+        videoModal.addEventListener('click', function(event) {
           if (event.target === videoModal) {
             closeModal();
           }
-        }
+        });
         
         // Fecha modal com tecla ESC
         document.addEventListener('keydown', function(event) {
           if (event.key === 'Escape') {
             closeModal();
           }
-        });
-
-        // Navegação por teclado na galeria
-        document.addEventListener('keydown', function(event) {
-          const galleryModal = document.getElementById('galleryModal');
+          
+          // Navegação por teclado na galeria
           if (galleryModal.style.display === 'block') {
             if (event.key === 'ArrowLeft') {
               changeImage(-1);
