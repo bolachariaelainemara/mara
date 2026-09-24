@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Teste 4 - Eventos e Interações</title>
+
+    <!-- Usando o seu arquivo separado de Analytics -->
+    <script src="analytics.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        button, .btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-comprar {
+            background-color: #ff5722;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Página de Teste 4</h1>
+    <p>Clique nos elementos abaixo para enviar eventos interativos ao Google Analytics!</p>
+
+    <!-- Exemplo 1: Clique num botão de contato (ex: WhatsApp) -->
+    <div class="card">
+        <h3>1. Clique de Contato</h3>
+        <p>Ao clicar no botão abaixo, o Analytics registra que o usuário quis entrar em contato.</p>
+        <button onclick="gtag('event', 'clique_whatsapp', { 'origem': 'index4' }); alert('Evento de WhatsApp enviado!');">
+            Falar no WhatsApp
+        </button>
+    </div>
+
+    <!-- Exemplo 2: Simulação de Clique em Produto / Compra -->
+    <div class="card">
+        <h3>2. Clique em Oferta / Produto</h3>
+        <p>Mede o interesse num produto ou oferta específica.</p>
+        <button class="btn btn-comprar" onclick="gtag('event', 'clique_produto', { 'nome_produto': 'Biscoito Amanteigado', 'valor': 15.00 }); alert('Evento de Produto enviado!');">
+            Comprar Biscoito Amanteigado (R$ 15,00)
+        </button>
+    </div>
+
+    <!-- Exemplo 3: Envio de Formulário -->
+    <div class="card">
+        <h3>3. Envio de Formulário</h3>
+        <p>Dispara um evento quando o formulário é enviado.</p>
+        <form onsubmit="event.preventDefault(); gtag('event', 'envio_formulario_contato', { 'tipo': 'duvida_produto' }); alert('Formulário enviado e registrado!');">
+            <label for="nome">Seu Nome:</label>
+            <input type="text" id="nome" placeholder="Digite seu nome..." required>
+            <button type="submit" style="background-color: #2196F3;">Enviar Dúvida</button>
+        </form>
+    </div>
+
+    <!-- Navegação entre as páginas -->
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="index.html" style="color: #666; font-weight: bold; margin-right: 15px;">&larr; Voltar para Index 1</a>
+        <a href="index3.html" style="color: #666; font-weight: bold;">Ir para Index 3 &rarr;</a>
+    </div>
+
+</body>
+</html>
