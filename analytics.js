@@ -1,5 +1,5 @@
 // Substitua o 'G-SEU-CODIGO-AQUI' pelo seu ID real do Google Analytics
-var gaId = 'G-2CBFDQ8B53';
+var gaId = 'G-HGJDEKGYNE';
 
 // Carrega o script oficial do Google Analytics
 var script = document.createElement('script');
